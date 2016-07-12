@@ -1,0 +1,63 @@
+.toggle-bar {
+	height: 3px;
+	width: 24px;
+	transition: transform .3s 0s ease-in-out, top .3s 0s ease-in-out;
+	background-color: $green;
+	position: absolute;
+	display: block;
+	left: 7px;
+	
+}
+
+
+button.navbar-toggle {
+	width: 38px;
+	height: 38px;
+	position: relative;
+	cursor: pointer;
+	padding: 0;
+	margin: 3px -7px 0 0;
+
+	span {
+
+		@extend .toggle-bar;
+		background-color: transparent;
+
+		&:before, &:after {
+			@extend .toggle-bar;
+			content: '';
+			left: 0;
+			top: 0;
+		}
+
+		&:before {
+			transform: rotate(45deg);
+			
+		}
+		&:after {
+			transform: rotate(-45deg);
+		}
+		
+	}
+
+	&.collapsed span {
+
+		background-color: $green;
+
+		&:before, &:after {
+			background-color: $green;
+			transform: rotate(0deg);
+		}
+
+		&:before {
+			top: -8px;
+
+		}
+
+		&:after {
+			bottom: -8px;
+			top: auto;
+		}
+	}
+
+}

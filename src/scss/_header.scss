@@ -1,0 +1,43 @@
+.container-fluid > header {
+	margin-top: 62px;
+	color: white;
+	text-align: center;
+	background: $green;
+	position: relative;
+	overflow: hidden;
+	
+	h1 {
+		font-size: 46px;
+		margin-bottom: 25px;
+	}
+
+	.tagline {
+		font-weight: bold;
+	
+		margin-top: 40px;
+		@media (min-width: 768px) {
+			margin-top: 60px;
+			font-size: 32px;
+		}
+	}
+
+	.btn {
+		margin-top: 30px;
+		color: $green;
+		background: #fff;
+		font-size: 16px;
+
+		@media (min-width: 768px) {
+			font-size: 18px;
+			padding: 15px 40px;
+		}
+	}
+
+	.btn:hover {
+		color: $green;
+	}
+
+	@media (min-width: 768px) {
+		margin-top: 80px;
+	}
+}

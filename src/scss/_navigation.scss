@@ -1,0 +1,89 @@
+@import 'navtoggle';
+
+@keyframes slide-in {
+	from {
+		transform: translate(0%, -100%);
+	}
+	
+	to {
+		transform: translate(0%, 0%);
+	}
+}
+
+.navbar {
+	background-color: #fff;
+	border-radius: 0;
+
+	&.stuck {
+		background-color: rgba(255, 255,255, .9);
+		transition: background-color .3s 0s ease-out, border .3s 0s ease-out;
+		
+		@media (min-width: 768px) {
+			animation: slide-in .3s 0s ease-out forwards;
+		}
+	}
+}
+
+.navbar-header {
+
+	.logo {
+		float: left;
+		margin-top: 2px;
+
+		.replaced {
+			height: 32px;
+			width: 150px;
+			background: url(../images/gone-busy-logo.svg) no-repeat 0% 50%;
+			background-size: 100% 100%;
+
+			@media (min-width: 768px) {
+				background-size: 100% 100%;
+			}
+			display: block;
+
+			
+		}
+	}
+	
+}
+
+
+.container-fluid > nav {
+	margin: 0;
+	padding: 10px 15px;
+
+	@media (min-width: 768px) {
+		padding: 20px;
+		min-height: 50px;
+	}
+
+	ul.nav {
+		
+		li {
+			
+			> a {
+
+				font-size: 18px;
+				padding: 10px 15px;
+				font-weight: bold;
+
+				&:active,
+				&:visited,
+				&:hover,
+				&:link {
+					color: #666;
+				}
+
+				&:hover,
+				&.active {
+					color: $green;
+				}
+			}
+		}
+	}
+}
+
+.navbar-collapse {
+	padding: 0;
+	overflow: hidden;
+} 
