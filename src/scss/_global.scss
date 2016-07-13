@@ -35,7 +35,7 @@
 }
 
 .padding {
-	padding: 20px;
+	padding: 30px 15px;
 
 	@media (min-width: 768px) {
 
@@ -95,7 +95,7 @@ button {
 .btn {
 	box-shadow: none;
 	border: none;
-	border-radius: 0;
+	// border-radius: 0;
 }
 
 .btn-lg {
@@ -158,15 +158,9 @@ label {
 	}
 }
 
-.nav-stacked {
-	> li {
-		display: block;
-	}
-}
 
 section {
 	@extend .padding;
-	text-align: center;
 
 	> h2 {
 		margin-bottom: 40px;

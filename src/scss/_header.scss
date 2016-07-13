@@ -1,22 +1,45 @@
+@import 'calendar';
+
 .container-fluid > header {
+	@extend .padding;
 	margin-top: 62px;
 	color: white;
-	text-align: center;
 	background: $green;
 	position: relative;
 	overflow: hidden;
 	
+	@media (min-width: 768px) {
+		.row {
+			display: table;
+			[class^="col-"] {
+				float: none;
+				display: table-cell;
+				vertical-align: middle;
+
+				&:nth-child(2) {
+					padding-left: 40px;
+				}
+			}
+		}
+	}
 	h1 {
-		font-size: 46px;
+		font-size: 26px;
 		margin-bottom: 25px;
+
+		@media (min-width: 768px) {
+			font-size: 36px;
+			margin-bottom: 25px;
+		}
 	}
 
 	.tagline {
 		font-weight: bold;
+		margin-top: 12px;
+		font-size: 18px;
 	
-		margin-top: 40px;
+		margin-top: 15px;
 		@media (min-width: 768px) {
-			margin-top: 60px;
+			margin-top: 20px;
 			font-size: 32px;
 		}
 	}

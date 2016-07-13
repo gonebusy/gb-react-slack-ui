@@ -1,0 +1,66 @@
+.calendar-container {
+	margin:0 auto;
+	max-width: 300px;
+
+
+	.calendar {
+
+		background: #fff;
+		padding: 25px 15px;
+
+		@extend .clearfix;
+
+		.weekdays, .week {
+			padding: 0;
+		}
+		.month {
+			color: $green;
+			font-weight:700;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+
+		.weekday { 
+			color: $red;
+			font-weight:700;
+		}
+
+		.day {
+			font-weight: 700;
+			color:#555555;
+		}
+
+		.weekday, .day {
+			float:left;
+			width: 14.23%;
+			font-size: 16px;
+			line-height:1.5em;
+			vertical-align: middle;
+			list-style-type: none;
+			padding: 0;
+			text-align: center;
+
+			&.now {
+				position:relative;
+				color: $red;
+				&:before {
+					content:"";
+					position: absolute;
+					
+					left: 50%;
+					top: 50%;
+					width:30px;
+					height:30px;
+					margin-top: -15px;
+					margin-left: -15px;
+					border: 2px solid $red;
+					border-radius: 50%;
+				}
+			}
+		}
+	}
+
+
+}
+
+
