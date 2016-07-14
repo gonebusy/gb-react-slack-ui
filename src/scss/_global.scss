@@ -158,6 +158,14 @@ label {
 	}
 }
 
+sup {
+	font-size: 33.33%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+	top: -1em;
+}
+
 
 section {
 	@extend .padding;
@@ -167,3 +175,12 @@ section {
 	}
 }
 
+pre {
+	/*word-wrap: break-word;
+	font-size: .8vmax;*/
+	font-size: 16px;
+
+	&[class*=language-] {
+		max-height: calc(100vh - 220px);
+	}
+}

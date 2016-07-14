@@ -10,12 +10,57 @@
 
 section {
 
+	h2 {
+		color: $dark-blue;
+	}
+
+	&.what-can-you-do {
+	
+		color: #fff;
+		padding: 0;
+
+		div[class^="col-"] {
+
+			h3 {
+				margin-top: 0;
+			}
+
+			padding: 40px;
+
+			background: $lighter-gray;
+
+			&:first-child {
+				background: $blue;
+			}
+
+			ul {
+				font-size: 18px;
+			}
+		
+		}
+	}
+
+
 	&.flexibility {
 		background: $light-blue;
 	}
 
 	&.booking {
 		background: $light-green;
+	}
+
+	&.api {
+		h2 {
+			margin-top: 0;
+		}
+		ol {
+			padding: 0;
+			font-size: 18px;
+			list-style-type: none;
+			li {
+				padding: 10px 0;
+			}
+		}
 	}
 }
 

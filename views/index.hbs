@@ -1,28 +1,45 @@
 {{> header stylesheet='css/main.css'}}
 <header>
 	<div class="row inner">
-
-
 		<div class="col-sm-4">
 			{{> calendar}} 
 		</div>
 
 		<div class="col-sm-8">
-			
 			<h1><span class="wrap">The only Booking Platform you need. For any business or social activity. Fully automated, feature rich. No hidden fees.</span></h1>
 			<p class="tagline">Now available for API users.</p>
 			<a class="btn btn-lg" href="/sign-up">Learn More</a>
-			
 		</div>
-
-		
 	</div>
 </header>
+
+<section class="what-can-you-do">
+	<div class="row inner">
+		<div class="col-sm-6">
+			<h3>What Your Customers Do With GoneBusy<sup>®</sup></h3>
+			<ul>
+				<li>Search</li>
+				<li>Book</li>
+				<li>Rate / Review / Manage</li>
+				<li>Receive Notifications</li>
+			</ul>
+		</div>
+		<div class="col-sm-6">
+			<h3>What Your Business Do With GoneBusy<sup>®</sup></h3>
+			<ul>
+				<li>Advertise Time</li>
+				<li>Receive Bookings</li>
+				<li>Confirm / Deny / Cancel</li>
+				<li>Send Notifications</li>
+			</ul>
+		</div>
+	</div>
+</section>
 
 <section class="flexibility">
 	<div class="row inner">
 		<div class="col-sm-8">
-			<h2>Large and Small Businesses Who Value Flexibility and Brand Management</h2>
+			<h2>GoneBusy<sup>®</sup> is for large and small businesses who value flexibility and brand Management.</h2>
 			<p>Other solutions require a large financial investment with limited customization. With GoneBusy, you can integrate online booking into your own website or business systems, maintaining the freedom to be uniquely you.</p>
 		</div>
 		<div class="col-sm-4">
@@ -37,7 +54,7 @@
 			<img class="img-responsive" src="images/dog-walker.svg" />
 		</div>
 		<div class="col-sm-8">
-			<h2>Self-Starters With Skills or Resources to Share</h2>
+			<h2>GoneBusy<sup>®</sup> helps self-starters with skills or resources to get their businesses off the ground.</h2>
 			<p>From dog walkers, to caterers, to rideshares. GoneBusy brings power to the new Gig Economy.</p>
 		</div>
 	</div>
@@ -46,7 +63,7 @@
 <section class="booking">
 	<div class="row inner">
 		<div class="col-sm-8">
-			<h2>Industry and Community Sites That Want to Offer Booking to Their Clients</h2>
+			<h2>GoneBusy<sup>®</sup> integrates with industry and community sites that want to offer booking to their clients.</h2>
 			<p>Offering booking as a feature will help your business provide additional value for your clients.</p>
 			<p>Become an Affiliate Partner and we will share 50% of booking fees with you.  <a href="/faqs/affiliate_program/">Learn more</a>.</p>
 		</div>
@@ -56,5 +73,38 @@
 	</div>
 </section>
 
+<section class="api">
+	<div class="row inner">
+		<div class="col-sm-6">
+			<h2>Getting Started with the GoneBusy<sup>®</sup> API</h2>
+			<ol>
+				<li><a data-reveal-id="signup-modal">Sign up</a> and become a Pro User to obtain an API Key.</li>
+				<li>Use the API to create Resources, Services, Schedules, and other Users.  <a href="http://gonebusy.github.io">See the API Guide</a>.</li>
+				 <li>Display the times of available Services on your website, along with the GoneBusy Booking button.</li>
+				<!--<li>When a user clicks on the Book It! button, they login to GoneBusy and complete the Booking request.</li>
+				<li>The Pro user offering the service gets notified by Email/SMS about a new booking and can confirm or deny.</li>
+				<li>If confirmed, the booking is then managed by GoneBusy until completion of the requested service.  Only Users that successfully completed a booking are invited to rate the Service and Pro User they booked with.</li> -->
+			</ol>
+		</div>
+		<div class="col-sm-6">
+			<pre>
+				<code class="language-ruby">
+service = GB::Service.create(
+	name: 'Executive Car Wash',
+	duration: 30,
+	desc: 'Washed By Executives')
+)
+
+GB::Schedule.create(service,
+	start_date: '2016-0201',
+	start_time: '12pm',
+	end_time: '2pm',
+	days: ['tuesday', 'thursday'],
+	recurs_by: 'weekly')
+				</code>
+			</pre>
+		</div>
+	</div>
+</section>
 
 {{> footer script='js/main.min.js'}}
