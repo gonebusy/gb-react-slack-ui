@@ -7,6 +7,7 @@
 	background: $green;
 	position: relative;
 	overflow: hidden;
+
 	
 	@media (min-width: 768px) {
 		.row {
@@ -22,6 +23,8 @@
 			}
 		}
 	}
+
+
 	h1 {
 		font-size: 26px;
 		margin-bottom: 25px;
