@@ -1,37 +1,10 @@
-@import 'bootstrap';
-@import 'prism';
-@import 'typography';
-@import 'variables';
-@import 'global';
-@import 'mixins';
+@import 'shared/*';
 @import 'header';
-@import 'sections';
-@import 'footer';
-@import 'navigation';
-@import 'carousels';
-@import 'modals';
+@import 'hero';
 
 body {
-	font: 22px/1.2  Arial, sans-serif;
-	color: $gray;
-	letter-spacing: .01em;
-}
-
-a { 
-	transition: color .3s 0s ease-out, background-color .3s 0s ease-out, border-color .3s 0s ease-out;
-	
-	&:active, &:visited, &:hover, &:link {
-		text-decoration: none;
-		color: $dark-gray;
-	}
-
-	a:hover {
-		color: $gray;
-	}
-}
-
-.container-fluid {
-	padding: 0;
-	margin: auto;
-	background-color: #fff;
+  margin: 0;
+  font: 16px / 1 $font-body;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
