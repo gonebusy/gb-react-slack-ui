@@ -1,0 +1,102 @@
+@mixin burger-bar($color, $thickness) {
+  background-color: $color;
+  display: block;
+  height: $thickness;
+  position: absolute;
+  transition: all .3s 0s ease-in-out;
+  width: 100%;
+}
+
+@mixin burger($width, $height, $color, $thickness, $open) {
+  height: $height;
+  width: $width;
+
+  span {
+    @include burger-bar($color, $thickness);
+    top: 50%;
+
+    &:before, &:after {
+      @include burger-bar($color, $thickness);
+      content: '';
+    }
+
+    &:before {
+      top: - $height / 2;
+    }
+
+    &:after {
+      bottom: - $height / 2;
+    }
+
+    @if $open == true {
+      background-color: transparent;
+
+      &:before {
+        top: 50%;
+      }
+
+      &:after {
+        bottom: -50%;
+      }
+
+      &:before {
+        transform: rotate(45deg);
+      }
+
+      &:after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+@mixin reset {
+  border: 0;
+  color: inherit;
+  font-family: inherit;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+@mixin reset-form-element {
+  @include reset;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border-radius: 0;
+  outline: none;
+}
+
+@mixin reset-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+@mixin responsive-image {
+  height: auto;
+  width: 100%;
+}
+
+@mixin custom-hit-area($width, $height) {
+  position: relative;
+
+  &:before {
+    // background-color: rgba(#f0f, .2);
+    content: '';
+    height: $height;
+    @if $width == 100% {
+      left: 0;
+    } @else {
+      left: 50%;
+      margin-left: - $width / 2;
+    }
+    margin-top: - $height / 2;
+    position: absolute;
+    top: 50%;
+    width: $width;
+  }
+}

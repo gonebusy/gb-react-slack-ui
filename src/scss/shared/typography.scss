@@ -1,0 +1,26 @@
+@font-face{
+  font-family: Slack;
+  src: url('../assets/fonts/slack-icons-Regular.woff2') format('woff2'),
+       url('../assets/fonts/slack-icons-Regular.woff') format('woff');
+  font-style:normal;font-weight: 400
+}
+
+.ts_icon:before, ts-icon:before {
+  font-family: Slack;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  display: inline-block;
+}
+
+.ts_icon_plus_thick:before {
+  content: '\E306';
+}
+
+.ts_icon_mentions:before {
+  content: '\E009';
+}
+
+.ts_icon_happy_smile:before {
+  content: '\E119';
+}

@@ -1,51 +1,152 @@
-'use strict';
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const autoprefixer = require('autoprefixer');
 
-var debug = process.env.NODE_ENV !== "production";
-var webpack = require('webpack');
-var path = require('path');
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
-var _globals = new webpack.ProvidePlugin({
-	'$':'jquery',
-	'jQuery':'jquery',
-	'TweenLite': 'gsap-tween-lite',
-	'Utils': __dirname +'/src/js/utils/utils'
-});
+module.exports = {
+    entry: {
+        bundle: './src/js/main.js'
+    } ,
+    output: {
+        path: path.resolve(__dirname, './public')
+    },
+    devtool: isDevelopment && "source-map",
+    devServer: {
+        port: 3000,
+        open: true,
+        contentBase: path.join(__dirname, "./src"),
+    },
+    module: {
+        rules: [
+            {   
+                test: /\.hbs$/,
+                loader: "handlebars-loader" 
+            },
+            {
+                test: /\.(jsx|js)?$/,
+                use: ['babel-loader'],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.(scss|css)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: "css-loader",
+                        options: {
+                            sourceMap: isDevelopment,
+                            minimize: !isDevelopment
+                        }
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            autoprefixer: {
+                                browsers: ["last 2 versions"]
+                            },
+                            sourceMap: isDevelopment,
+                            plugins: () => [
+                                autoprefixer
+                            ]
+                        },
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: isDevelopment
+                        }
+                    },
+                    {
+                        loader: 'sass-bulk-import-loader'
+                    }
+                ]
+            },
+            {
+                test: /\.(jpg|png|gif)$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'images/',
+                            useRelativePath: true,
+                        }
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                          mozjpeg: {
+                            progressive: true,
+                            quality: 65
+                          },
+                          optipng: {
+                            enabled: true,
+                          },
+                          pngquant: {
+                            quality: '65-90',
+                            speed: 4
+                          },
+                          gifsicle: {
+                            interlaced: false,
+                          },
+                          webp: {
+                            quality: 75
+                          }
+                        }
+                    }
+                ]
+            },
+            {
+            test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+            use: [{
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                outputPath: 'fonts/'
+              }
+            }]
+          },
+        ] 
+    },
+    plugins: [
+        /** Since Webpack 4 */
+        new webpack.LoaderOptionsPlugin({
+            options: {
+              handlebarsLoader: {}
+            }
+        }),
 
-module.exports = {  
-	context: __dirname,
-	devtool: debug ? "inline-sourcemap" : null,
+        new MiniCssExtractPlugin({
+            filename: "[name]-styles.css",
+            chunkFilename: "[id].css"
+        }),  
+         
+        new HtmlWebpackPlugin({
+            title: 'Gone Busy',
+            template: 'src/templates/index.hbs',
+            minify: !isDevelopment && {
+                html5: true,
+                collapseWhitespace: false,
+                caseSensitive: true,
+                removeComments: true,
+                removeEmptyElements: true
+            },
+        }),
 
-	resolve: {
-		root: [path.join(__dirname, "node_modules")],
-		alias: {
-			"gsap-tween-lite": __dirname + "/src/js/vendor/gsap/uncompressed/TweenLite.js",
-			"gsap-css-plugin":__dirname +  "/src/js/vendor/gsap/uncompressed/plugins/CSSPlugin.js",
-			"gsap-ease-pack": __dirname + "/src/js/vendor/gsap/uncompressed/easing/EasePack.js",
-			"gsap-draggable": __dirname + "/src/js/vendor/gsap/uncompressed/utils/Draggable.js",
-			"gsap-throw-props": __dirname + "/src/js/vendor/gsap/uncompressed/plugins/ThrowPropsPlugin.js",
-			"gsap-draw-svg-plugin": __dirname + "/src/js/vendor/gsap/uncompressed/plugins/DrawSVGPlugin.js",
-			"gsap-scroll-to-plugin": __dirname + "/src/js/vendor/gsap/uncompressed/plugins/ScrollToPlugin.js",
-			"gsap-split-text": __dirname + "/src/js/vendor/gsap/uncompressed/utils/SplitText.js",
-			"doableUtils": __dirname + "/src/js/utils/utils.js",
-			"waypoints": __dirname + "/node_modules/waypoints/lib/noframework.waypoints.js"
-		},
-		extensions: ['', '.js']
-	},
-	entry: {
-		main:'./src/js/main'
-	},
-	
-	output: {
-		path: path.join(__dirname + "/public/js"),
-		filename: "[name].min.js"
-	},
-	externals: {
-		'TweenLite': 'TweenLite'
-	},
-	plugins: debug ? [_globals] : [
-		_globals,
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-	]
-}
+        new HtmlWebpackInlineSVGPlugin({
+            runPreEmit: true,
+        })
+    ],
+    resolve: {
+        alias: {
+          TweenLite: './node_modules/gsap/src/uncompressed/TweenLite'
+        }
+    },
+    externals: {
+        TweenLite: 'TweenLite'
+    }
+  };

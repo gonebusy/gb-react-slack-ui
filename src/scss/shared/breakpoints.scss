@@ -1,0 +1,38 @@
+@import '~breakpoint-sass/stylesheets/breakpoint';
+
+$bp__small: max-width 699px;
+$bp__medium: min-width 700px;
+$bp__large: min-width 1024px;
+$bp__extra-large: min-width 1280px;
+$bp__ultra: min-width 1500px;
+
+
+@mixin small() {
+  @include breakpoint($bp__small) {
+    @content;
+  }
+} 
+
+@mixin medium() {
+  @include breakpoint($bp__medium) {
+    @content;
+  }
+}
+
+@mixin large() {
+  @include breakpoint($bp__large) {
+    @content;
+  }
+}
+
+@mixin extra-large() {
+  @include breakpoint($bp__extra-large) {
+    @content;
+  }
+}
+
+@mixin ultra() {
+   @include breakpoint($bp__ultra) {
+      @content;
+  }
+}

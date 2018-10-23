@@ -1,25 +1,7 @@
-# gb-www
-Revamp of GB pages
+# This is the example code for the article: "Build a landing page with Webpack 4"
+[https://medium.com/@jonas_duri/build-a-landing-page-with-webpack-4-6efe83deb7fe](https://medium.com/@jonas_duri/build-a-landing-page-with-webpack-4-6efe83deb7fe)
 
-## Getting Started
+Before running the code run `npm install` in your console.
 
-clone git repo then 
-
-```
-$ cd gb-www
-$ npm i
-```
-## Running the local environment
-It starts a local server running on port 3000, hit it by going to **http://localhost:3000**. 
-```
-$ npm start
-```
-## Dev Environment
-Watch tasks for js and css. Bundles js with webpack. Compiles scss with node-sass.
-```
-$ npm run dev
-```
-## Production Environment
-Minifies js and css. 
-```
-$ npm run build
+Start development server: `npm run start`.
+Create a production build: `npm run build`.
