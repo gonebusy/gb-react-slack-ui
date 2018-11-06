@@ -1,0 +1,335 @@
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  49% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.slack {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+
+  &__label {
+    margin: 2px 0 1px;
+    color: #717274;
+    font-size: 12px;
+
+    &-icon {
+      display: inline-block;
+      margin-right: 4px;
+      svg {
+        height: 8px;
+      }
+    }
+  }
+
+  &__avatar-image {
+    width: 36px;
+    height: 36px;
+    border-radius: 3px;
+  }
+
+  &__member {
+    background: #eaf5fc;
+    border-radius: 3px;
+    padding: 0 2px 1px 2px;
+    color: #0576b9;
+
+    &--self {
+      background: #fff5d3;
+    }
+  }
+
+  &__gutter {
+    padding-right: 8px;
+    width: 36px;
+    float: left;
+
+    + .slack__content {
+      margin-left: 36px;
+    }
+  }
+
+  &__app {
+
+    &-name {
+      color: #2c2d30;
+      font-weight: 900;
+      word-break: break-word;
+    }
+
+    &-badge {
+      background-color: #e8e8e8;
+      border-radius: 2px;
+      color: #717274;
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      height: 14px;
+      line-height: 1.25;
+      padding: 1px 3px;
+      vertical-align: .125rem;
+      text-transform: uppercase;
+    }
+
+    &-timestamp {
+      color: #717274;
+      font-size: 12px;
+    }
+  }
+
+  &__response {
+
+    &-attachments {
+      border-left: 4px solid #4dd87e;
+      margin-left: 4px;
+    }
+
+    &-attachment {
+      padding: 0 12px;
+
+      &-title {
+        font-weight: 700;
+      }
+
+      &-author {
+
+        &-icon {
+          width: 16px;
+          height: 16px;
+          border-radius: 2px;
+          box-sizing: content-box;
+          margin-right: 4px;
+          overflow: hidden;
+          vertical-align: middle;
+        }
+
+        &-name {
+          color: #717274;
+          line-height: 1.46666667;
+          font-size: 15px;
+        }
+      }
+
+      &-footer {
+        &-icon {
+          width: 16px;
+          height: 16px;
+          border-radius: 2px;
+          box-sizing: content-box;
+          margin-right: 4px;
+          overflow: hidden;
+          vertical-align: middle;
+        }
+
+        &-text {
+          font-size: 12px;
+          line-height: 1.25;
+          color: #717274;
+        }
+      }
+
+      &-button,
+      &-combo-box {
+        background: $color-white;
+        box-shadow: inset 0 0 0 1px rgba(#008952,.3);
+        color: #008952;
+        font-weight: 700;
+        margin: 8px 8px 2px 0;
+        max-width: 220px;
+        padding: 0 10px;
+        vertical-align: middle;
+        font-size: 13px;
+        height: 28px;
+        border-radius: 4px;
+        display: inline-flex;
+        justify-content: center;
+        outline: none;
+        position: relative;
+        text-align: center;
+        user-select: none;
+        white-space: nowrap;
+        line-height: 27px;
+      }
+
+      &-combo-box {
+        border: 1px solid rgba(44,45,48,.22);
+        box-shadow: none;
+        font-weight: 400;
+        color: $color-slack-gray;
+        padding-right: 40px;
+        background: url(/images/drop-down-arrow.svg) no-repeat calc(100% - 12px) 50%;
+        background-size: 8px 6px;
+      }
+    }
+
+    &-body {
+      margin: 8px 0 -4px;
+      font-size: 15px;
+    }
+  }
+
+  &__tab {
+    position: absolute;
+    background: $color-white;
+    z-index: 100000;
+    padding: 0;
+    line-height: 1.4rem;
+    box-shadow: 0 5px 10px rgba($color-black, .12);
+    border-radius: 6px;
+    border: 1px solid rgba($color-black, .15);
+    min-width: 300px;
+    overflow: hidden;
+    bottom: 48px;
+    left: 42px;
+    right: 0;
+    top: auto;
+    visibility: hidden;
+
+    &--response {
+      // visibility: visible;
+      left: 0;
+      bottom: 68px;
+      padding: 4px 10px 16px;
+      background: #f9f9f9;
+      border-radius: none;
+      //box-shadow: none;
+      border: 0;
+    }
+
+    &-header {
+      padding: 5px 10px 4px;
+      background: #faf8f6;
+      color: #7f7f83;
+      font-size: 12px;
+      border-bottom: 1px solid rgba($color-black, .15);
+      background-clip: padding-box;
+      overflow: hidden;
+      border-radius: 6px 6px 0 0;
+    }
+
+    &-list {
+      @include reset;
+    }
+
+    &-group {
+      display: flex;
+      border: 0;
+      cursor: pointer;
+      background: 0 0;
+      padding: 5px 10px 4px;
+      font-size: 15px;
+      line-height: 2;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      .group_name {
+        font-weight: 700;
+        padding-right: .5rem;
+        color: #717274;
+        font-size: .8rem;
+      }
+
+      .group_divider {
+        border: none;
+        flex: 1;
+        border-top: 1px solid #e8e8e8;
+        margin: .8rem 0 0;
+      }
+    }
+
+    &-item {
+      font-size: 15px;
+      padding: 6px 10px;
+      line-height: 1.2rem;
+
+      .cmdname {
+        font-weight: 900;
+      }
+
+      &.active {
+        background: #2d9ee0;
+        color: $color-white;
+        text-shadow: 0 1px rgba($color-black, .1);
+      }
+    }
+  }
+
+  &__message {
+    background-color: $color-white;
+    border-radius: .375rem;
+    display: flex;
+    height: 47px;
+    color: rgba($color-slack-gray, .7);
+
+    .text-wrapper {
+      display: inline-block;
+      margin: 0 1px;
+    }
+
+    &.active {
+      color: #7d7d7d;
+    }
+
+    &-btn {
+      width: 44px;
+      border-radius: 6px 0 0 6px;
+      line-height: 42px;
+      border: 2px solid currentColor;
+      text-align: center;
+    }
+
+    &-input {
+      padding: 9px;
+      border: 2px solid currentColor;
+      border-left: none;
+      border-radius: 0 6px 6px 0;
+      flex: 1;
+
+      &-wrapper {
+        display: flex;
+        height: 100%;
+        align-items: center;
+      }
+
+      &-text {
+        flex: 1;
+        font: 15px / 1.5 $font-slack;
+        letter-spacing: .3px;
+
+        .active & {
+          color: #2c2d30;
+        }
+
+        &-inner {
+          position: relative;
+          display: inline-block;
+
+          &::after {
+            .active & {
+              position: absolute;
+              content: '|';
+              right: -4px;
+              top: 0;
+              animation: blink 1s infinite;
+            }
+          }
+        }
+      }
+
+      &-mentions,
+      &-emo-menu {
+        padding: 0 6px;
+      }
+    }
+  }
+}

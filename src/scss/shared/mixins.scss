@@ -15,35 +15,36 @@
     @include burger-bar($color, $thickness);
     top: 50%;
 
-    &:before, &:after {
+    &::before,
+    &::after {
       @include burger-bar($color, $thickness);
       content: '';
     }
 
-    &:before {
+    &::before {
       top: - $height / 2;
     }
 
-    &:after {
+    &::after {
       bottom: - $height / 2;
     }
 
     @if $open == true {
       background-color: transparent;
 
-      &:before {
+      &::before {
         top: 50%;
       }
 
-      &:after {
+      &::after {
         bottom: -50%;
       }
 
-      &:before {
+      &::before {
         transform: rotate(45deg);
       }
 
-      &:after {
+      &::after {
         transform: rotate(-45deg);
       }
     }
@@ -84,10 +85,11 @@
 @mixin custom-hit-area($width, $height) {
   position: relative;
 
-  &:before {
+  &::before {
     // background-color: rgba(#f0f, .2);
     content: '';
     height: $height;
+
     @if $width == 100% {
       left: 0;
     } @else {
@@ -98,5 +100,16 @@
     position: absolute;
     top: 50%;
     width: $width;
+  }
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &::before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
   }
 }
