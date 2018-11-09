@@ -37,7 +37,7 @@ export default class HeroAnimation {
         TweenLite.set(this.activeTextElement, { text: '/gonebusy book Interview with' });
 
         this.activeTextElement = document.createElement('span');
-        this.activeTextElement.className = 'text-wrapper slack__member';
+        this.activeTextElement.className = 'text-wrapper slack__mention';
         this.activeTextElement.innerHTML = '@brucewayne';
         this.textContainerElement.appendChild(this.activeTextElement);
 
