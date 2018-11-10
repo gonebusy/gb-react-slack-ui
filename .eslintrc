@@ -1,0 +1,43 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "globals": {
+    "window": true,
+    "document": true
+  },
+  "rules": {
+    "func-names": ["error", "never"],
+    "class-methods-use-this": "off",
+    "curly": ["error", "all"],
+    "no-shadow": [0],
+    "no-implicit-coercion": ["error", {
+      "boolean": true,
+      "number": true,
+      "string": true,
+      "allow": []
+    }],
+    "no-unused-vars": ["error", { "args": "none" }],
+    "comma-dangle": ["error", "never"],
+    "no-debugger": "warn",
+    "prefer-destructuring": ["warn", {
+        "array": true,
+        "object": true
+    }],
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+    "eol-last": "off",
+    "max-len": "off",
+    "no-plusplus": "off",
+    "no-underscore-dangle": "off",
+    "one-var": "off",
+    "one-var-declaration-per-line": "off",
+    "operator-assignment": "off",
+    "semi-spacing": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "space-before-function-paren": ["error", {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "never"
+    }],
+    "indent": ["error", 2]
+  }
+}
