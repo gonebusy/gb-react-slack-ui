@@ -116,7 +116,7 @@ module.exports = {
         collapseWhitespace: false,
         caseSensitive: true,
         removeComments: true,
-        removeEmptyElements: true
+        removeEmptyElements: false
       }
     }),
 
