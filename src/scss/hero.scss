@@ -18,8 +18,9 @@
   &__heading {
     font: 26px / 1.3 $font-heading;
     font-weight: 400;
-    color: #009cd9;
-    margin: 0 0 20px 0;
+    color: $color-blue;
+    margin: 0 auto 20px;
+    max-width: 600px;
 
     @include medium {
       font-size: 34px;

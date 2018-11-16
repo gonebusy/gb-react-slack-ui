@@ -6,12 +6,11 @@ $bp__large: min-width 1024px;
 $bp__extra-large: min-width 1280px;
 $bp__ultra: min-width 1500px;
 
-
 @mixin small() {
   @include breakpoint($bp__small) {
     @content;
   }
-} 
+}
 
 @mixin medium() {
   @include breakpoint($bp__medium) {
@@ -32,7 +31,7 @@ $bp__ultra: min-width 1500px;
 }
 
 @mixin ultra() {
-   @include breakpoint($bp__ultra) {
-      @content;
+  @include breakpoint($bp__ultra) {
+    @content;
   }
 }
