@@ -6,7 +6,7 @@
 <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,width=device-width">
 <title>Gone Busy</title>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i|Lato:400, 600|Nunito:400,600" rel="stylesheet">
-<link href="css/main.css" rel="stylesheet"></head>
+<link href="/css/main.css" rel="stylesheet"></head>
 <body>
   <header class="site-header">
     <div class="site-header__wrapper">
@@ -90,7 +90,7 @@
                 </li>
                 <li class="tab_complete_ui_item slack__member">
                   <span class="slack__member-presence"><i class="slack__member-presence-icon"></i></span>
-                  <span class="slack__member-thumb" style="background-image: url('images/gonebusy-avatar.png');"></span>
+                  <span class="slack__member-thumb" style="background-image: url('/images/gonebusy-avatar.png');"></span>
                   <span class="slack__member-name">gonebusy</span>
                   <span class="slack__member-label">APP</span>
                   <span class="slack__member-secondary-name">Gonebusy</span>
@@ -125,12 +125,12 @@
                     <div class="slack__tab slack__tab--response">
           
              <div class="slack__label">
-                <span class="slack__label-icon"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" version="1.1" viewBox="0 0 95.1 51.8" xml:space="preserve"><path fill="currentColor" d="M94.5 24C89.9 18 73.8 0 47.6 0S5.4 18 .7 24c-.9 1.1-.9 2.7 0 3.8 4.6 6 20.7 24 46.9 24s42.2-18 46.9-24c.8-1.1.8-2.7 0-3.8zM47.6 45.2c-10.7 0-19.3-8.6-19.3-19.3S36.9 6.6 47.6 6.6s19.3 8.6 19.3 19.3-8.6 19.3-19.3 19.3z"/><circle cx="47.6" cy="25.9" r="12.4" fill="currentColor"/></svg></span>
+                <span class="slack__label-icon"><svg viewBox="0 0 256 199.11"><path fill="currentColor" d="M256 99.56C256 78.23 213.33 0 128 0S0 78.22 0 99.56s42.67 99.56 128 99.56 128-78.23 128-99.56zm-192 0a64 64 0 1 1 64 64 63.91 63.91 0 0 1-64-64zm89.6-4.27A21.3 21.3 0 0 1 132.27 74a20.69 20.69 0 0 1 2.13-9.39 31.53 31.53 0 0 0-6.4-.57 35.56 35.56 0 1 0 35.56 35.56 32.46 32.46 0 0 0-.57-6.4 20.69 20.69 0 0 1-9.39 2.09z"/></svg></span>
                 <span class="slack__label-text">Only visible to you</span>
              </div>
           
              <div class="slack__gutter">
-                <img class="slack__avatar-image" src="images/gonebusy-avatar.png" alt="">
+                <img class="slack__avatar-image" src="/images/gonebusy-avatar.png" alt="">
              </div>
              <div class="slack__content" data-qa="message_content">
                 <div class="c-message__content_header">
@@ -146,7 +146,7 @@
                    <div class="slack__response-attachment">
                       <div class="slack__response-attachment-body">
                          <div class="slack__response-attachment-author">
-                            <img class="slack__response-attachment-author-icon" alt="" src="images/default-avatar.png">
+                            <img class="slack__response-attachment-author-icon" alt="" src="/images/default-avatar.png">
                             <span class="slack__response-attachment-author-name">Your Slack Name</span>
                          </div>
                          <div class="slack__response-attachment-title">Interview with Bruce Wayne</div>
@@ -154,7 +154,7 @@
                          <div class="slack__response-attachment-text">With <span class="slack__mention slack__mention--self">@yourslackname</span>, <span class="slack__mention">@brucewayne</span></div>
           
                          <div class="slack__response-attachment-footer">
-                            <img class="slack__response-attachment-footer-icon" src="images/google-calendar.png">
+                            <img class="slack__response-attachment-footer-icon" src="/images/google-calendar.png">
                             <span class="slack__response-attachment-footer-text">Added to Google Calendar</span>
                          </div>
           
@@ -173,6 +173,9 @@
         <div class="slack__message">
           <div class="slack__message-btn">
             <i class="ts_icon ts_icon_plus_thick"></i>
+            <span class="slack__icon">
+              <svg viewBox="0 0 256 256"><path fill="currentColor" d="M142.6 112.9v-75c0-8.9-6.1-15.4-14.6-15.4s-14.6 6.5-14.6 15.4V113h-73c-8.6 0-14.9 6.3-14.9 15.1 0 8.7 6.3 15.1 14.9 15.1h72.9v75.1c0 8.9 6.1 15.4 14.6 15.4s14.6-6.5 14.6-15.4v-75.1h72.9c8.6 0 14.9-6.3 14.9-15.1S224 113 215.4 113l-72.8-.1z"/></svg>
+            </span>
           </div>
           <div class="slack__message-input">
             <div class="slack__message-input-wrapper">
@@ -182,15 +185,193 @@
                 </div>
               </div>
               <div class="slack__message-input-mentions">
-                <i class="ts_icon ts_icon_mentions"></i>
+                <span class="slack__icon">
+                  <svg viewBox="0 0 256 256"><path fill="currentColor" d="M0 128a128 128 0 0 0 189.58 112.21l.43-.28a10.64 10.64 0 0 0-5-20.05 11.2 11.2 0 0 0-5.26 1.42 106.69 106.69 0 1 1 54.9-93.3c0 21.33-8.53 35.56-24.89 35.56-14.93 0-24.89-10-24.89-24.89V81.78a10.67 10.67 0 1 0-21.33 0v1.85a56.89 56.89 0 1 0 7.25 81.78c7.82 12.23 21.62 19.48 39 19.48 29.16 0 46.22-22.76 46.22-56.89a128 128 0 1 0-256 0zm92.44 0A35.56 35.56 0 1 1 128 163.56 35.57 35.57 0 0 1 92.44 128z"/></svg>
+                </span>
               </div>
               <div class="slack__message-input-emo">
-                <i class="ts_icon ts_icon_happy_smile"></i>
+                <span class="slack__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path fill="currentColor" d="M128 0a128 128 0 1 0 128 128A128 128 0 0 0 128 0zm0 21.33A106.67 106.67 0 1 1 21.33 128 106.71 106.71 0 0 1 128 21.33zm35.56 56.89a21.33 21.33 0 1 0 21.33 21.33 21.3 21.3 0 0 0-21.33-21.33zm-71.11 0a21.33 21.33 0 1 0 21.33 21.33 21.3 21.3 0 0 0-21.34-21.33zm-14.93 64a10.56 10.56 0 0 0-10.67 10.67c0 14.93 14.65 53.33 61.16 53.33 45.94 0 61.16-37.83 61.16-53.33a10.56 10.56 0 0 0-10.67-10.67z"/></svg>
+                </span>
               </div>
             </div>
           </div>
         </div></div>    <div>
-        <h1 class="hero__heading">Introducing Gonebusy for Slack</h1>
+        <h1 class="hero__heading">Never leave Slack to get more from your Google Calendar.</h1>
+        <p class="hero__description">Easily book meetings, find that Hangout you're late for, or just keep your schedule up to date with smart filters – all within Slack.</p>
+        <a title="AddToSlack" class="hero__link" data-reveal-id="connect-calendar-modal">
+          <img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x">
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="hero">
+    <div class="hero__content">
+      <div class="slack">
+        <div class="slack__tabs">
+          <div class="slack__tab slack__tab--apps">
+            <div class="slack__tab-header">
+              <span id="slack__tab-header-query">
+                Commands matching “<strong>/gone</strong>”
+              </span>
+              <span class="slack__tab-header-help">
+                <strong>tab</strong> or <strong>↑</strong> <strong>↓</strong> to navigate
+                <span class="left_margin">
+                  <strong>↵</strong> to select
+                </span>
+                <span class="left_margin">
+                  <strong>esc</strong> to dismiss
+                </span>
+              </span>
+            </div>
+            <div class="slack__tab-scroller">
+              <ul class="slack__tab-list" role="listbox">
+                <li class="slack__tab-group">
+                  <span class="group_name">Gonebusy</span>
+                  <hr class="group_divider">
+                </li>
+                  <li role="option" tabindex="-1" class="slack__tab-item active">
+                    <div>
+                      <span class="cmdname">/gonebusy</span>
+                        [ &lt;notion of time&gt; | book | feedback | help | ... ]
+                    </div>
+                    <div>
+                      <span class="cmddesc">Run Gonebusy commands from anywhere</span>
+                    </div>
+                  </li>
+              </ul>
+            </div>
+          </div>    <div class="slack__tab slack__tab--members">
+            <div class="slack__tab-header">
+              <span id="chat_input_tab_ui_header_query">People matching “<strong>@</strong>”</span>
+              <span class="header_help">
+                <strong>tab</strong> or <strong>↑</strong> <strong>↓</strong> to navigate
+                <span class="left_margin">
+                  <strong>↵</strong> to select
+                </span>
+                <span class="left_margin">
+                  <strong>esc</strong> to dismiss
+                </span>
+              </span>
+            </div>
+            <div class="slack__tab-scroller">
+              <ul class="slack__tab-list" role="listbox">
+                <li class="tab_complete_ui_item slack__member slack__member--active">
+                  <span class="slack__member-presence slack__member-presence--active"><i class="slack__member-presence-icon"></i></span>
+                  <span class="slack__member-thumb"></span>
+                  <span class="slack__member-name">brucewayne</span>
+                  <span class="slack__member-secondary-name">Bruce Wayne</span>
+                </li>
+                <li class="tab_complete_ui_item slack__member">
+                  <span class="slack__member-presence"><i class="slack__member-presence-icon"></i></span>
+                  <span class="slack__member-thumb" style="background-image: url('/images/gonebusy-avatar.png');"></span>
+                  <span class="slack__member-name">gonebusy</span>
+                  <span class="slack__member-label">APP</span>
+                  <span class="slack__member-secondary-name">Gonebusy</span>
+                </li>
+                <li class="tab_complete_ui_item slack__member">
+                  <span class="slack__member-presence"><i class="slack__member-presence-icon"></i></span>
+                  <span class="slack__member-thumb"></span>
+                  <span class="slack__member-name">joker</span>
+                  <span class="slack__member-secondary-name">Jack Napier</span>
+                </li>
+                <li class="tab_complete_ui_item slack__member">
+                  <span class="slack__member-presence slack__member-presence--offline"><i class="slack__member-presence-icon"></i></span>
+                  <span class="slack__member-thumb"></span>
+                  <span class="slack__member-name">harleyquinn</span>
+                  <span class="slack__member-secondary-name">Harley Quinn</span>
+                </li>
+                <li class="tab_complete_ui_item slack__member">
+                  <span class="slack__member-presence slack__member-presence--offline"><i class="slack__member-presence-icon"></i></span>
+                  <span class="slack__member-thumb"></span>
+                  <span class="slack__member-name">posionivy</span>
+                  <span class="slack__member-secondary-name">Maggie Geha</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          
+          
+                         
+                
+                
+                    <div class="slack__tab slack__tab--response">
+          
+             <div class="slack__label">
+                <span class="slack__label-icon"><svg viewBox="0 0 256 199.11"><path fill="currentColor" d="M256 99.56C256 78.23 213.33 0 128 0S0 78.22 0 99.56s42.67 99.56 128 99.56 128-78.23 128-99.56zm-192 0a64 64 0 1 1 64 64 63.91 63.91 0 0 1-64-64zm89.6-4.27A21.3 21.3 0 0 1 132.27 74a20.69 20.69 0 0 1 2.13-9.39 31.53 31.53 0 0 0-6.4-.57 35.56 35.56 0 1 0 35.56 35.56 32.46 32.46 0 0 0-.57-6.4 20.69 20.69 0 0 1-9.39 2.09z"/></svg></span>
+                <span class="slack__label-text">Only visible to you</span>
+             </div>
+          
+             <div class="slack__gutter">
+                <img class="slack__avatar-image" src="/images/gonebusy-avatar.png" alt="">
+             </div>
+             <div class="slack__content" data-qa="message_content">
+                <div class="c-message__content_header">
+                   <span class="c-message__sender" data-qa="message_sender">
+                      <span class="slack__app-name">Gonebusy</span>
+                      <span class="slack__app-badge">App</span>
+                      <span class="slack__app-timestamp">7:55 PM</span>
+                   </span>
+                </div>
+                <span class="slack__response-body">You're all set.</span>
+          
+                <div class="slack__response-attachments">
+                   <div class="slack__response-attachment">
+                      <div class="slack__response-attachment-body">
+                         <div class="slack__response-attachment-author">
+                            <img class="slack__response-attachment-author-icon" alt="" src="/images/default-avatar.png">
+                            <span class="slack__response-attachment-author-name">Your Slack Name</span>
+                         </div>
+                         <div class="slack__response-attachment-title">Interview with Bruce Wayne</div>
+                         <div class="slack__response-attachment-text">September 15th from 1PM to 2PM</div>
+                         <div class="slack__response-attachment-text">With <span class="slack__mention slack__mention--self">@yourslackname</span>, <span class="slack__mention">@brucewayne</span></div>
+          
+                         <div class="slack__response-attachment-footer">
+                            <img class="slack__response-attachment-footer-icon" src="/images/google-calendar.png">
+                            <span class="slack__response-attachment-footer-text">Added to Google Calendar</span>
+                         </div>
+          
+                         <div class="slack__response-attachment-text">
+                            <span class="slack__response-attachment-button">Edit Details</span>
+                            <span class="slack__response-attachment-combo-box">More actions...</span>
+                         </div>
+          
+                           
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+        </div>
+        <div class="slack__message">
+          <div class="slack__message-btn">
+            <i class="ts_icon ts_icon_plus_thick"></i>
+            <span class="slack__icon">
+              <svg viewBox="0 0 256 256"><path fill="currentColor" d="M142.6 112.9v-75c0-8.9-6.1-15.4-14.6-15.4s-14.6 6.5-14.6 15.4V113h-73c-8.6 0-14.9 6.3-14.9 15.1 0 8.7 6.3 15.1 14.9 15.1h72.9v75.1c0 8.9 6.1 15.4 14.6 15.4s14.6-6.5 14.6-15.4v-75.1h72.9c8.6 0 14.9-6.3 14.9-15.1S224 113 215.4 113l-72.8-.1z"/></svg>
+            </span>
+          </div>
+          <div class="slack__message-input">
+            <div class="slack__message-input-wrapper">
+              <div class="slack__message-input-text">
+                <div class="slack__message-input-text-inner">
+                  <span class="text-wrapper">Message</span>
+                </div>
+              </div>
+              <div class="slack__message-input-mentions">
+                <span class="slack__icon">
+                  <svg viewBox="0 0 256 256"><path fill="currentColor" d="M0 128a128 128 0 0 0 189.58 112.21l.43-.28a10.64 10.64 0 0 0-5-20.05 11.2 11.2 0 0 0-5.26 1.42 106.69 106.69 0 1 1 54.9-93.3c0 21.33-8.53 35.56-24.89 35.56-14.93 0-24.89-10-24.89-24.89V81.78a10.67 10.67 0 1 0-21.33 0v1.85a56.89 56.89 0 1 0 7.25 81.78c7.82 12.23 21.62 19.48 39 19.48 29.16 0 46.22-22.76 46.22-56.89a128 128 0 1 0-256 0zm92.44 0A35.56 35.56 0 1 1 128 163.56 35.57 35.57 0 0 1 92.44 128z"/></svg>
+                </span>
+              </div>
+              <div class="slack__message-input-emo">
+                <span class="slack__icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path fill="currentColor" d="M128 0a128 128 0 1 0 128 128A128 128 0 0 0 128 0zm0 21.33A106.67 106.67 0 1 1 21.33 128 106.71 106.71 0 0 1 128 21.33zm35.56 56.89a21.33 21.33 0 1 0 21.33 21.33 21.3 21.3 0 0 0-21.33-21.33zm-71.11 0a21.33 21.33 0 1 0 21.33 21.33 21.3 21.3 0 0 0-21.34-21.33zm-14.93 64a10.56 10.56 0 0 0-10.67 10.67c0 14.93 14.65 53.33 61.16 53.33 45.94 0 61.16-37.83 61.16-53.33a10.56 10.56 0 0 0-10.67-10.67z"/></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div></div>    <div>
+        <h1 class="hero__heading">Never leave Slack to get more from your Google Calendar.</h1>
         <p class="hero__description">Easily book meetings, find that Hangout you're late for, or just keep your schedule up to date with smart filters – all within Slack.</p>
         <a title="AddToSlack" class="hero__link" data-reveal-id="connect-calendar-modal">
           <img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x">
@@ -202,5 +383,5 @@
 <script src="js/vendor/gsap/minified/plugins/CSSPlugin.min.js"></script>
 <script src="js/vendor/gsap/minified/plugins/TextPlugin.min.js"></script>
 <script src="js/vendor/gsap/minified/easing/EasePack.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script></body>
+<script type="text/javascript" src="/js/main.js"></script></body>
 </html>

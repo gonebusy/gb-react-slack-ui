@@ -3,7 +3,6 @@
   color: $color-black;
   background-color: $color-white;
   box-sizing: border-box;
-
   font: 14px / 1 $font-body;
 
   @include medium {
@@ -24,7 +23,6 @@
   }
 
   &__logo {
-
     &-link {
       @include reset-link;
       display: block;
@@ -38,7 +36,6 @@
   }
 
   &__nav {
-   
     display: none;
     padding: 20px 0;
 
@@ -77,7 +74,7 @@
       }
     }
   }
- 
+
   &__button-wrapper {
     @include medium {
       display: flex;

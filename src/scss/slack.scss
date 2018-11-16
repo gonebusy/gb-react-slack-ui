@@ -22,6 +22,12 @@
   flex-direction: column;
   text-align: left;
 
+  &__icon {
+    svg {
+      height: 18px;
+    }
+  }
+
   &__tabs {
     position: relative;
     margin-bottom: 4px;
@@ -30,12 +36,13 @@
 
   &__label {
     margin: 2px 0 1px;
-    color: #717274;
+    color: $color-gray;
     font-size: 12px;
 
     &-icon {
       display: inline-block;
       margin-right: 4px;
+
       svg {
         height: 8px;
       }
@@ -49,13 +56,13 @@
   }
 
   &__mention {
-    background: #eaf5fc;
+    background: $color-light-lavender;
     border-radius: 3px;
     padding: 0 2px 1px 2px;
-    color: #0576b9;
+    color: $color-deep-blue;
 
     &--self {
-      background: #fff5d3;
+      background: $color-cream;
     }
   }
 
@@ -70,17 +77,16 @@
   }
 
   &__app {
-
     &-name {
-      color: #2c2d30;
+      color: $color-dark-gray;
       font-weight: 900;
       word-break: break-word;
     }
 
     &-badge {
-      background-color: #e8e8e8;
+      background-color: $color-lightest-gray;
       border-radius: 2px;
-      color: #717274;
+      color: $color-gray;
       display: inline-block;
       font-size: 10px;
       font-weight: 600;
@@ -92,7 +98,7 @@
     }
 
     &-timestamp {
-      color: #717274;
+      color: $color-gray;
       font-size: 12px;
     }
   }
@@ -104,7 +110,7 @@
     padding: 0 12px;
 
     &--active {
-      background: #2d9ee0;
+      background: $color-active-blue;
       text-shadow: 0 1px rgba(0, 0, 0, .1);
     }
 
@@ -113,7 +119,7 @@
       line-height: 2;
       display: inline-block;
       vertical-align: middle;
-      color: #4dac86;
+      color: $color-green;
       padding: 0 7px 0 0;
 
       &--active {
@@ -132,7 +138,7 @@
 
         #{$member}-presence--offline & {
           background-color: transparent;
-          color: #717274;
+          color: $color-gray;
         }
       }
     }
@@ -149,7 +155,7 @@
     }
 
     &-name {
-      color: #2c2d30;
+      color: $color-dark-gray;
       font-weight: 600;
       display: inline-block;
       vertical-align: middle;
@@ -165,8 +171,8 @@
       border-radius: 2px;
       font-size: 10px;
       padding: 1px 3px;
-      color: #717274;
-      background-color: #e8e8e8;
+      color: $color-gray;
+      background-color: $color-lightest-gray;
       display: inline-block;
       vertical-align: middle;
       height: 14px;
@@ -180,7 +186,7 @@
     }
 
     &-secondary-name {
-      color: #717274;
+      color: $color-gray;
       word-break: break-word;
       white-space: nowrap;
       display: inline-block;
@@ -194,9 +200,8 @@
   }
 
   &__response {
-
     &-attachments {
-      border-left: 4px solid #4dd87e;
+      border-left: 4px solid $color-light-green;
       margin-left: 4px;
     }
 
@@ -208,7 +213,6 @@
       }
 
       &-author {
-
         &-icon {
           width: 16px;
           height: 16px;
@@ -220,7 +224,7 @@
         }
 
         &-name {
-          color: #717274;
+          color: $color-gray;
           line-height: 1.46666667;
           font-size: 15px;
         }
@@ -240,7 +244,7 @@
         &-text {
           font-size: 12px;
           line-height: 1.25;
-          color: #717274;
+          color: $color-gray;
         }
       }
 
@@ -254,7 +258,7 @@
         max-width: 220px;
         padding: 0 10px;
         vertical-align: middle;
-        font-size: 13px;
+        font-size: 12px;
         height: 28px;
         border-radius: 4px;
         display: inline-flex;
@@ -271,7 +275,7 @@
         border: 1px solid rgba(44, 45, 48, .22);
         box-shadow: none;
         font-weight: 400;
-        color: $color-slack-gray;
+        color: $color-medium-gray;
         padding-right: 40px;
         background: url(/images/drop-down-arrow.svg) no-repeat calc(100% - 12px) 50%;
         background-size: 8px 6px;
@@ -312,7 +316,7 @@
     }
 
     &--members {
-     // visibility: visible;
+      // visibility: visible;
     }
 
     &-header {
@@ -345,14 +349,14 @@
       .group_name {
         font-weight: 600;
         padding-right: .5rem;
-        color: #717274;
+        color: $color-gray;
         font-size: .8rem;
       }
 
       .group_divider {
         border: none;
         flex: 1;
-        border-top: 1px solid #e8e8e8;
+        border-top: 1px solid $color-lightest-gray;
         margin: .8rem 0 0;
       }
     }
@@ -367,7 +371,7 @@
       }
 
       &.active {
-        background: #2d9ee0;
+        background: $color-active-blue;
         color: $color-white;
         text-shadow: 0 1px rgba($color-black, .1);
       }
@@ -378,7 +382,7 @@
     background-color: $color-white;
     border-radius: .375rem;
     display: flex;
-    color: rgba($color-slack-gray, .7);
+    color: rgba($color-medium-gray, .7);
 
     .text-wrapper {
       display: inline-block;
@@ -386,7 +390,7 @@
     }
 
     &.active {
-      color: #7d7d7d;
+      color: $color-gray;
     }
 
     &-btn {
@@ -419,7 +423,7 @@
         letter-spacing: .3px;
 
         .active & {
-          color: #2c2d30;
+          color: $color-dark-gray;
         }
 
         &-inner {
