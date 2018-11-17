@@ -23,9 +23,8 @@
   text-align: left;
 
   &__icon {
-    svg {
-      height: 18px;
-    }
+    display: inline-block;
+    height: 18px;
   }
 
   &__tabs {
