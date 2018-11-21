@@ -14,7 +14,7 @@ export default class SlackMessage extends Component {
     return (
       <div className="slack__message">
         <div className="slack__message-btn">
-          <PlusThickIcon className="slack__icon" />
+          <PlusThickIcon className="slack__icon slack__icon--plus" />
         </div>
         <div className="slack__message-input">
           <div className="slack__message-input-wrapper">
@@ -37,7 +37,7 @@ export default class SlackMessage extends Component {
 }
 
 SlackMessage.defaultProps = {
-  placeholder: 'Sash Sausage'
+  placeholder: 'Message gonebusy'
 };
 
 SlackMessage.propTypes = {

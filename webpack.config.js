@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractCssChunks = require('mini-css-extract-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -25,7 +25,7 @@ module.exports = {
     errorDetails: false
   },
   cache: dev,
-  devtool: dev && 'inline-cheap-module-source-map',
+  devtool: 'inline-cheap-module-source-map',
   devServer: {
     hot: dev,
     historyApiFallback: dev
@@ -78,7 +78,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: true,
-              minimize: false,
+              minimize: !dev,
               url: true
             }
           },
@@ -120,16 +120,15 @@ module.exports = {
     ]
   },
   plugins: [
-    /** Since Webpack 4 */
+    new ExtractCssChunks({
+      hot: dev,
+      filename: 'css/[name].css'
+    }),
+
     new webpack.LoaderOptionsPlugin({
       options: {
         handlebarsLoader: {}
       }
-    }),
-
-    new ExtractCssChunks({
-      hot: dev,
-      filename: 'css/[name].css'
     }),
 
     new CleanWebpackPlugin(['public']),

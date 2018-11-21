@@ -24,7 +24,11 @@
 
   &__icon {
     display: inline-block;
-    height: 18px;
+    width: 18px;
+
+    &--plus {
+      height: 42px;
+    }
   }
 
   &__tabs {
@@ -41,10 +45,7 @@
     &-icon {
       display: inline-block;
       margin-right: 4px;
-
-      svg {
-        height: 8px;
-      }
+      height: 8px;
     }
   }
 
@@ -327,6 +328,10 @@
       background-clip: padding-box;
       overflow: hidden;
       border-radius: 6px 6px 0 0;
+
+      p {
+        margin: 0;
+      }
     }
 
     &-list {
