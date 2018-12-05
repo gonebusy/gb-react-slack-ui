@@ -6,7 +6,7 @@ export default class SlackMessage extends Component {
   }
 
   render() {
-    const { name, cmdname } = this.props;
+    const { name, command } = this.props;
     return (
       <Fragment>
         <div className="slack__tab-group">
@@ -15,7 +15,7 @@ export default class SlackMessage extends Component {
         </div>
         <div className="slack__tab-item active">
           <div>
-            <span className="cmdname">{cmdname}</span>
+            <span className="command">{command}</span>
               [ &lt;notion of time&gt; | book | feedback | help | ... ]
           </div>
           <div>
@@ -29,10 +29,10 @@ export default class SlackMessage extends Component {
 
 SlackMessage.defaultProps = {
   name: 'Gonebusy',
-  cmdname: '/gonebusy'
+  command: '/gonebusy'
 };
 
 SlackMessage.propTypes = {
   name: PropTypes.string,
-  cmdname: PropTypes.string
+  command: PropTypes.string
 };

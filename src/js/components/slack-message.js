@@ -9,10 +9,30 @@ export default class SlackMessage extends Component {
   componentWillMount() {
   }
 
-  render() {
-    const { placeholder } = this.props;
+  renderText() {
+    const { text } = this.props;
+    const splitted = text.split('@brucewayne');
     return (
-      <div className="slack__message">
+      <span className="text-wrapper">
+        {splitted[0]}
+        {splitted.length > 1 && <span className="text-wrapper slack__mention">@brucewayne</span>}
+        {splitted.length > 1 && splitted[1]}
+      </span>
+    );
+  }
+
+  render() {
+    const {
+      placeholder,
+      text
+    } = this.props;
+
+    let className = 'slack__message';
+    if (text) {
+      className += ' active';
+    }
+    return (
+      <div className={className}>
         <div className="slack__message-btn">
           <PlusThickIcon className="slack__icon slack__icon--plus" />
         </div>
@@ -20,7 +40,8 @@ export default class SlackMessage extends Component {
           <div className="slack__message-input-wrapper">
             <div className="slack__message-input-text">
               <div className="slack__message-input-text-inner">
-                <span className="text-wrapper">{placeholder}</span>
+                {!text && <span className="text-wrapper">{placeholder}</span>}
+                {text && this.renderText()}
               </div>
             </div>
             <div className="slack__message-input-mentions">
@@ -37,9 +58,11 @@ export default class SlackMessage extends Component {
 }
 
 SlackMessage.defaultProps = {
-  placeholder: 'Message gonebusy'
+  placeholder: 'Message gonebusy',
+  text: null
 };
 
 SlackMessage.propTypes = {
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  text: PropTypes.string
 };

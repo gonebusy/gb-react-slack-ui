@@ -1,55 +1,121 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { TweenLite, Linear } from 'gsap';
 import SlackMessage from './slack-message';
 import SlackTab from './slack-tab';
 import SlackApp from './slack-app';
 import SlackTabMember from './slack-tab-member';
 import SlackTabResponse from './slack-tab-response';
+import members from '../../data/members.json';
+import 'gsap/TextPlugin';
+
 import '../../scss/slack.scss';
 
 export default class Slack extends Component {
-  componentWillMount() {
+  constructor() {
+    super();
+    this.state = {
+      messageText: null,
+      showResponse: false
+    };
+  }
+
+  componentDidMount() {
+    TweenLite.delayedCall(1, () => {
+      this.animate();
+    });
+  }
+
+  animate() {
+    const { message } = this.props;
+    let span = document.createElement('span');
+    const speed = 12;
+    TweenLite.to(span, message.length / speed, {
+      text: message,
+      onUpdate: () => {
+        this.setState({ messageText: span.textContent });
+      },
+      onComplete: () => {
+        TweenLite.delayedCall(1, () => {
+          this.setState({
+            messageText: null
+          });
+        });
+
+        TweenLite.delayedCall(1.2, () => {
+          this.setState({
+            showResponse: true
+          });
+        });
+
+        TweenLite.delayedCall(4, () => {
+          this.setState({
+            showResponse: false
+          });
+          this.animate();
+        });
+        span = null;
+      },
+      ease: Linear.easeNone
+    });
+  }
+
+  renderMember(member, i, search) {
+    return member.name.indexOf(search) > -1 && (
+      <SlackTabMember
+        key={i}
+        online={member.online}
+        label={member.label}
+        active={member.active}
+        name={member.name}
+        secondaryName={member.secondaryName}
+      />
+    );
+  }
+
+  renderMembers(search) {
+    return members.map((member, i) => this.renderMember(member, i, search));
   }
 
   render() {
+    const { command } = this.props;
+    const { messageText, showResponse } = this.state;
+    const appSearch = String(messageText).match(/\/[a-z]+$/);
+    const userSearch = String(messageText).match(/@[a-z]+$/);
+
     return (
       <div className="slack">
         <div className="slack__tabs">
-          <SlackTab>
-            <SlackTabMember
-              online
-              active
-              name="brucewayne"
-              secondaryName="Bruce Wayne"
-            />
-            <SlackTabMember
-              online
-              label="APP"
-              name="gonebusy"
-              secondaryName="Gonebusy"
-            />
-            <SlackTabMember
-              name="joker"
-              secondaryName="Jack Napier"
-            />
-            <SlackTabMember
-              online
-              name="harleyquinn"
-              secondaryName="Harley Quinn"
-            />
-            <SlackTabMember
-              name="posionivy"
-              secondaryName="Maggie Geha"
-            />
-          </SlackTab>
-          <SlackTab>
-            <SlackApp />
-          </SlackTab>
-          <SlackTab className="slack__tab--response" header={false}>
-            <SlackTabResponse />
-          </SlackTab>
+          {userSearch && (
+            <SlackTab>
+              {this.renderMembers(userSearch[0].substring(1))}
+            </SlackTab>
+          )
+          }
+          {appSearch && (
+            <SlackTab>
+              <SlackApp command={command} />
+            </SlackTab>
+          )
+          }
+          {showResponse && (
+            <SlackTab className="slack__tab--response" header={false}>
+              <SlackTabResponse />
+            </SlackTab>
+          )}
         </div>
-        <SlackMessage />
+        <SlackMessage text={messageText} ref={(ref) => { this.message = ref; }} />
       </div>
     );
   }
 }
+
+Slack.defaultProps = {
+  message: '',
+  command: '/gonebusy'
+};
+
+Slack.propTypes = {
+  message: PropTypes.string,
+  command: PropTypes.string
+};

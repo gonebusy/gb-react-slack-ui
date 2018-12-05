@@ -1,18 +1,16 @@
-@import 'slack';
-
-.hero {
+.demo {
   background-color: $color-sky-blue;
-  border-bottom: 1px solid $color-almost-white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  padding: 20px;
 
-  &__content {
-    text-align: center;
-    padding: 20px;
+  &:nth-child(even) {
+    background-color: adjust-hue($color-sky-blue, 50%);
+  }
 
-    @include medium {
-      padding: 40px;
-    }
+  @include medium {
+    padding: 40px;
   }
 
   &__heading {

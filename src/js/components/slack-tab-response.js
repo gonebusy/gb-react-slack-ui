@@ -25,7 +25,7 @@ export default class SlackTabResponse extends Component {
               <span className="slack__app-timestamp">7:55 PM</span>
             </span>
           </div>
-          <span className="slack__response-body">You\'re all set.</span>
+          <span className="slack__response-body">You're all set.</span>
           <div className="slack__response-attachments">
             <div className="slack__response-attachment">
               <div className="slack__response-attachment-body">
