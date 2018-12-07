@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import EyeFilledIcon from '../../assets/svg/eye-filled-icon.svg';
 
 export default class SlackTabResponse extends Component {
@@ -22,10 +23,10 @@ export default class SlackTabResponse extends Component {
             <span className="c-message__sender">
               <span className="slack__app-name">Gonebusy</span>
               <span className="slack__app-badge">App</span>
-              <span className="slack__app-timestamp">7:55 PM</span>
+              <span className="slack__app-timestamp">{moment().format('h:mm a')}</span>
             </span>
           </div>
-          <span className="slack__response-body">You're all set.</span>
+          <span className="slack__response-body">You&apos;re all set.</span>
           <div className="slack__response-attachments">
             <div className="slack__response-attachment">
               <div className="slack__response-attachment-body">
@@ -34,7 +35,7 @@ export default class SlackTabResponse extends Component {
                   <span className="slack__response-attachment-author-name">Your Slack Name</span>
                 </div>
                 <div className="slack__response-attachment-title">Interview with Bruce Wayne</div>
-                <div className="slack__response-attachment-text">September 15th from 1PM to 2PM</div>
+                <div className="slack__response-attachment-text">{`${moment().add(1, 'days').format('MMMM Do')} from 1PM to 2PM`}</div>
                 <div className="slack__response-attachment-text">With <span className="slack__mention slack__mention--self">@yourslackname</span>, <span className="slack__mention">@brucewayne</span></div>
                 <div className="slack__response-attachment-footer">
                   <img alt="" className="slack__response-attachment-footer-icon" src="/images/google-calendar.png" />

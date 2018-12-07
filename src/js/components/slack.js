@@ -29,7 +29,7 @@ export default class Slack extends Component {
   animate() {
     const { message } = this.props;
     let span = document.createElement('span');
-    const speed = 12;
+    const speed = 8;
     TweenLite.to(span, message.length / speed, {
       text: message,
       onUpdate: () => {
@@ -48,7 +48,7 @@ export default class Slack extends Component {
           });
         });
 
-        TweenLite.delayedCall(4, () => {
+        TweenLite.delayedCall(8, () => {
           this.setState({
             showResponse: false
           });
