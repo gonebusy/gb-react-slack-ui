@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import moment from 'moment';
 import Slack from './components/slack';
+
 
 import '../scss/main.scss';
 import '../assets/favicon.ico';
@@ -11,6 +13,11 @@ const Main = function() {
       <section className="demo">
         <Slack
           message="/gonebusy book Interview with @brucewayne tomorrow at 1pm"
+          responseHeading="You're all set."
+          responseTitle="Interview with Bruce Wayne"
+          responseDescription={`${moment().add(1, 'days').format('MMMM Do')} from 1PM to 2PM`}
+          responseMembers="With @yourslackname, @brucewayne"
+          responseShowAddedToGoogleCalender
         />
         <div className="demo__content">
           <h1 className="demo__heading">Never leave Slack to get more from your Google Calendar.</h1>
@@ -22,13 +29,22 @@ const Main = function() {
       </section>
       <section className="demo">
         <Slack
+          responseHeading="Here's today:"
+          responseTitle="Coffee"
+          responseDescription="☕️ today from 10:00AM to 10:30AM"
+          responseMembers="With @yourslackname, @joker, @brucewayne"
           message="this shows the /today functionality"
           command="/today"
         />
       </section>
       <section className="demo">
         <Slack
-          message="Monday, I could book something completely different with @brucewayne with /gonebusy"
+          responseHeading="You're all set."
+          responseTitle="Monday"
+          responseDescription={`${moment().startOf('isoWeek').weekday(8).format('MMMM Do')} from 1PM to 2PM`}
+          responseMembers="With @yourslackname, @harleyquinn"
+          message="Monday, I could book something completely different with @harleyquinn with /gonebusy"
+          responseShowAddedToGoogleCalender
         />
       </section>
     </Fragment>

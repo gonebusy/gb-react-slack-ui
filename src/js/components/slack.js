@@ -28,6 +28,7 @@ export default class Slack extends Component {
 
   animate() {
     const { message } = this.props;
+
     let span = document.createElement('span');
     const speed = 8;
     TweenLite.to(span, message.length / speed, {
@@ -47,6 +48,8 @@ export default class Slack extends Component {
             showResponse: true
           });
         });
+
+        return;
 
         TweenLite.delayedCall(8, () => {
           this.setState({
@@ -78,7 +81,14 @@ export default class Slack extends Component {
   }
 
   render() {
-    const { command } = this.props;
+    const {
+      command,
+      responseHeading,
+      responseTitle,
+      responseDescription,
+      responseMembers,
+      responseShowAddedToGoogleCalender
+    } = this.props;
     const { messageText, showResponse } = this.state;
     const appSearch = String(messageText).match(/\/[a-z]+$/);
     const userSearch = String(messageText).match(/@[a-z]+$/);
@@ -100,7 +110,13 @@ export default class Slack extends Component {
           }
           {showResponse && (
             <SlackTab className="slack__tab--response" header={false}>
-              <SlackTabResponse />
+              <SlackTabResponse
+                heading={responseHeading}
+                title={responseTitle}
+                description={responseDescription}
+                members={responseMembers}
+                showAddedToGoogleCalender={responseShowAddedToGoogleCalender}
+              />
             </SlackTab>
           )}
         </div>
@@ -112,10 +128,20 @@ export default class Slack extends Component {
 
 Slack.defaultProps = {
   message: '',
-  command: '/gonebusy'
+  command: '/gonebusy',
+  responseHeading: '',
+  responseTitle: '',
+  responseDescription: '',
+  responseMembers: '',
+  responseShowAddedToGoogleCalender: false
 };
 
 Slack.propTypes = {
   message: PropTypes.string,
-  command: PropTypes.string
+  command: PropTypes.string,
+  responseHeading: PropTypes.string,
+  responseTitle: PropTypes.string,
+  responseDescription: PropTypes.string,
+  responseMembers: PropTypes.string,
+  responseShowAddedToGoogleCalender: PropTypes.bool
 };

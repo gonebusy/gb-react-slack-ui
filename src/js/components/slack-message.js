@@ -1,24 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import SlackText from './slack-text';
 import PlusThickIcon from '../../assets/svg/plus-thick-icon.svg';
 import MentionsIcon from '../../assets/svg/mentions-icon.svg';
 import HappySmileIcon from '../../assets/svg/happy-smile-icon.svg';
 
 export default class SlackMessage extends Component {
   componentWillMount() {
-  }
-
-  renderText() {
-    const { text } = this.props;
-    const splitted = text.split('@brucewayne');
-    return (
-      <span className="text-wrapper">
-        {splitted[0]}
-        {splitted.length > 1 && <span className="text-wrapper slack__mention">@brucewayne</span>}
-        {splitted.length > 1 && splitted[1]}
-      </span>
-    );
   }
 
   render() {
@@ -41,7 +30,7 @@ export default class SlackMessage extends Component {
             <div className="slack__message-input-text">
               <div className="slack__message-input-text-inner">
                 {!text && <span className="text-wrapper">{placeholder}</span>}
-                {text && this.renderText()}
+                {text && <SlackText text={text} />}
               </div>
             </div>
             <div className="slack__message-input-mentions">
