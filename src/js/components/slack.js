@@ -49,8 +49,6 @@ export default class Slack extends Component {
           });
         });
 
-        return;
-
         TweenLite.delayedCall(8, () => {
           this.setState({
             showResponse: false
