@@ -1,28 +1,34 @@
+const $ = require('load-webpack-plugins')();
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackInlineSVGPlugin = require('html-webpack-inline-svg-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const dev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
     main: './src/js/main.js'
   },
   output: {
-    path: path.resolve(__dirname, './public'),
+    path: path.join(__dirname, '/public'),
     filename: 'js/main.js',
     publicPath: '/'
   },
-  devtool: isDevelopment && 'inline-cheap-module-source-map',
+  stats: {
+    colors: true,
+    modules: true,
+    reasons: true,
+    errorDetails: false
+  },
+  cache: dev,
+  devtool: 'inline-cheap-module-source-map',
   devServer: {
-    port: 8080,
-    open: true,
-    contentBase: path.join(__dirname, './src')
+    hot: dev,
+    historyApiFallback: dev
   },
   module: {
     rules: [
@@ -30,44 +36,24 @@ module.exports = {
         test: /\.hbs$/,
         loader: 'handlebars-loader'
       },
-      {
+      { // js uses babel and eslint
         test: /\.(jsx|js)?$/,
         use: ['babel-loader'],
         exclude: /node_modules/
       },
       {
-        test: /\.(scss|css)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: isDevelopment,
-              minimize: !isDevelopment
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              autoprefixer: {
-                browsers: ['last 2 versions']
-              },
-              sourceMap: isDevelopment,
-              plugins: () => [
-                autoprefixer
-              ]
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: isDevelopment
-            }
-          },
-          {
-            loader: 'sass-bulk-import-loader'
-          }
-        ]
+        test: /\.(jpg|png)/,
+        loader: 'file-loader?name=images/[name].[ext]',
+        include: path.join(__dirname, '/src')
+      },
+      {
+        test: /\.svg$/,
+        exclude: /node_modules/,
+        use: ['svg-react-loader']
+      },
+      {
+        test: /\.(html)$/,
+        use: ['html-loader']
       },
       {
         test: /\.(ico|pdf)/,
@@ -76,12 +62,57 @@ module.exports = {
       },
       {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/'
+          }
+        }]
+      },
+      { // compile scss with css loader, postcss loader, and sass loader
+        test: /\.scss/,
         use: [
+          ExtractCssChunks.loader,
           {
-            loader: 'file-loader',
+            loader: 'css-loader',
             options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
+              sourceMap: true,
+              minimize: !dev,
+              url: true
+            }
+          },
+          {
+            loader: 'clean-css-loader',
+            options: {
+              format: 'beautify'
+            }
+          },
+          {
+            loader: 'group-css-media-queries-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [autoprefixer]
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-bulk-import-loader'
+          },
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: './src/scss/shared.scss'
             }
           }
         ]
@@ -89,16 +120,15 @@ module.exports = {
     ]
   },
   plugins: [
-    /** Since Webpack 4 */
+    new ExtractCssChunks({
+      hot: dev,
+      filename: 'css/[name].css'
+    }),
+
     new webpack.LoaderOptionsPlugin({
       options: {
         handlebarsLoader: {}
       }
-    }),
-
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
-      chunkFilename: '[id].css'
     }),
 
     new CleanWebpackPlugin(['public']),
@@ -108,10 +138,10 @@ module.exports = {
       { from: 'images/**/*', to: './', context: 'src/assets/' }
     ]),
 
-    new HtmlWebpackPlugin({
+    new $.HtmlPlugin({
       title: 'Gone Busy',
       template: 'src/templates/index.hbs',
-      minify: !isDevelopment && {
+      minify: !dev && {
         html5: true,
         collapseWhitespace: false,
         caseSensitive: true,
@@ -122,7 +152,10 @@ module.exports = {
 
     new HtmlWebpackInlineSVGPlugin({
       runPreEmit: true
-    })
+    }),
+
+    new $.HotModuleReplacementPlugin(),
+    new $.NamedModulesPlugin()
   ],
   resolve: {
     alias: {
