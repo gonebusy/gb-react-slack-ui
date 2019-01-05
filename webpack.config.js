@@ -16,7 +16,8 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/public'),
     filename: 'js/main.js',
-    publicPath: '/'
+    publicPath: '/',
+    libraryTarget: 'umd'
   },
   stats: {
     colors: true,
