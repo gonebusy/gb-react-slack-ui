@@ -9,9 +9,15 @@ const autoprefixer = require('autoprefixer');
 
 const dev = process.env.NODE_ENV !== 'production';
 
+const PATHS = {
+    BUILD: path.join(__dirname, 'build'),
+    LIB: path.join(__dirname, 'lib'),
+    SOURCE: path.join(__dirname, 'src')
+};
+
 module.exports = {
   entry: {
-    main: './src/js/main.js'
+    main: [path.join(PATHS.SOURCE, 'index.js')]
   },
   output: {
     path: path.join(__dirname, '/public'),

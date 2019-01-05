@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-export default class SlackMessage extends Component {
+export default class SlackApp extends Component {
   componentWillMount() {
   }
 
@@ -27,12 +27,12 @@ export default class SlackMessage extends Component {
   }
 }
 
-SlackMessage.defaultProps = {
+SlackApp.defaultProps = {
   name: 'Gonebusy',
   command: '/gonebusy'
 };
 
-SlackMessage.propTypes = {
+SlackApp.propTypes = {
   name: PropTypes.string,
   command: PropTypes.string
 };

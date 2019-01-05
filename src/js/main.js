@@ -51,4 +51,4 @@ const Main = function() {
   );
 };
 
-ReactDOM.render(<Main />, document.getElementById('root'));
+export default Main;
