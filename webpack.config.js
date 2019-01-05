@@ -147,7 +147,7 @@ module.exports = {
     ]),
 
     new $.HtmlPlugin({
-      title: 'Gone Busy',
+      title: 'Gonebusy',
       template: 'src/templates/index.hbs',
       minify: !dev && {
         html5: true,

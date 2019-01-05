@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
-import Slack from './components/slack';
+import Slack from '../components/slack';
 
 
-import '../scss/main.scss';
-import '../assets/favicon.ico';
+import '../../scss/main.scss';
+import '../../assets/favicon.ico';
 
 const Main = function() {
   return (

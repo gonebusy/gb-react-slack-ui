@@ -1,8 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Main from './js/main'
-
-ReactDOM.render(<Main />, document.getElementById('root'));
+import './app'
 
 export { default as Slack } from './js/components/slack'
 export { default as SlackApp } from './js/components/slack-app'
