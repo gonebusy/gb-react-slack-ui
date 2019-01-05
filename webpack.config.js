@@ -20,8 +20,9 @@ module.exports = {
     main: [path.join(PATHS.SOURCE, 'index.js')]
   },
   output: {
-    path: path.join(__dirname, '/public'),
-    filename: 'js/main.js',
+    chunkFilename: '[id].bundle.js',
+    filename: '[name].bundle.js',
+    path: PATHS.BUILD,
     publicPath: '/',
     libraryTarget: 'umd'
   },
