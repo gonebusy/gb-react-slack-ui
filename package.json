@@ -5,6 +5,7 @@
   "description": "",
   "main": "build/index.js",
   "scripts": {
+    "build-debug": "NODE_ENV=development webpack --config ./webpack.config.js --mode=development",
     "build": "NODE_ENV=production webpack --config ./webpack.config.js --mode=production",
     "clean-deploy": "rm -rf build/*",
     "deploy": "npm run clean-deploy && npm run build",
