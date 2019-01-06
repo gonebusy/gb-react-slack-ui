@@ -2,4 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from './js/pages/main'
 
-ReactDOM.render(<Main />, document.getElementById('root'));
+const appRootDomElement = document.getElementById('root');
+if (appRootDomElement) {
+    ReactDOM.render(<Main />, appRootDomElement);
+}
