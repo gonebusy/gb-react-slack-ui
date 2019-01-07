@@ -23,7 +23,7 @@ export default class SlackTabResponse extends Component {
           <span className="slack__label-text">Only visible to you</span>
         </div>
         <div className="slack__gutter">
-          <img className="slack__avatar-image" src="/images/gonebusy-avatar.png" alt="" />
+          <img className="slack__avatar-image" src="../../assets/images/gonebusy-avatar.png" alt="" />
         </div>
         <div className="slack__content" data-qa="message_content">
           <div className="c-message__content_header">
@@ -38,7 +38,7 @@ export default class SlackTabResponse extends Component {
             <div className="slack__response-attachment">
               <div className="slack__response-attachment-body">
                 <div className="slack__response-attachment-author">
-                  <img className="slack__response-attachment-author-icon" alt="" src="/images/default-avatar.png" />
+                  <img className="slack__response-attachment-author-icon" alt="" src="../../assets/images/default-avatar.png" />
                   <span className="slack__response-attachment-author-name">Your Slack Name</span>
                 </div>
                 <div className="slack__response-attachment-title">{title}</div>
@@ -48,7 +48,7 @@ export default class SlackTabResponse extends Component {
                 </div>
                 {showAddedToGoogleCalender && (
                   <div className="slack__response-attachment-footer">
-                    <img alt="" className="slack__response-attachment-footer-icon" src="/images/google-calendar.png" />
+                    <img alt="" className="slack__response-attachment-footer-icon" src="../../assets/images/google-calendar.png" />
                     <span className="slack__response-attachment-footer-text">Added to Google Calendar</span>
                   </div>
                 )}
