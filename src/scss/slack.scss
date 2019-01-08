@@ -92,8 +92,8 @@
       font-weight: 600;
       height: 14px;
       line-height: 1.25;
+      margin: auto 3px;
       padding: 1px 3px;
-      vertical-align: .125rem;
       text-transform: uppercase;
     }
 
@@ -293,7 +293,7 @@
     background: $color-white;
     z-index: 100000;
     padding: 0;
-    line-height: 1.4;
+    line-height: 1.55;
     box-shadow: 0 5px 10px rgba($color-black, .12);
     border-radius: 6px;
     border: 1px solid rgba($color-black, .15);
