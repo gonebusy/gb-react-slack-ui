@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import SlackText from './slack-text';
 import EyeFilledIcon from '../../assets/svg/eye-filled-icon.svg';
+import GonebusyAvatar from '../../assets/svg/gonebusy-avatar.svg';
+import DefaultAvatar from '../../assets/svg/default-avatar.svg';
+import GoogleCalendar from '../../assets/svg/google-calendar.svg';
 
 export default class SlackTabResponse extends Component {
   componentWillMount() {
@@ -23,7 +26,7 @@ export default class SlackTabResponse extends Component {
           <span className="slack__label-text">Only visible to you</span>
         </div>
         <div className="slack__gutter">
-          <img className="slack__avatar-image" src="/images/gonebusy-avatar.png" alt="" />
+          <GonebusyAvatar className="slack__avatar-image" />
         </div>
         <div className="slack__content" data-qa="message_content">
           <div className="c-message__content_header">
@@ -38,7 +41,7 @@ export default class SlackTabResponse extends Component {
             <div className="slack__response-attachment">
               <div className="slack__response-attachment-body">
                 <div className="slack__response-attachment-author">
-                  <img className="slack__response-attachment-author-icon" alt="" src="/images/default-avatar.png" />
+                  <DefaultAvatar className="slack__response-attachment-author-icon" />
                   <span className="slack__response-attachment-author-name">Your Slack Name</span>
                 </div>
                 <div className="slack__response-attachment-title">{title}</div>
@@ -48,7 +51,7 @@ export default class SlackTabResponse extends Component {
                 </div>
                 {showAddedToGoogleCalender && (
                   <div className="slack__response-attachment-footer">
-                    <img alt="" className="slack__response-attachment-footer-icon" src="/images/google-calendar.png" />
+                    <GoogleCalendar className="slack__response-attachment-footer-icon" />
                     <span className="slack__response-attachment-footer-text">Added to Google Calendar</span>
                   </div>
                 )}
