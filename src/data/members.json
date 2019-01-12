@@ -27,5 +27,15 @@
   {
     "name":"posionivy",
     "secondaryName":"Maggie Geha"
+  },
+  {
+    "online":true,
+    "name":"wonderwheel",
+    "secondaryName":"TheWonderWheel"
+  },
+  {
+    "online":true,
+    "name":"wonderwoman",
+    "secondaryName":"Wonder Woman"
   }
 ]

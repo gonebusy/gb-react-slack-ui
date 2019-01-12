@@ -303,7 +303,7 @@
     right: 0;
     top: auto;
 
-    &--response {
+    &-response {
       left: 0;
       bottom: 10px;
       padding: 4px 10px 16px;
@@ -323,6 +323,10 @@
       border-radius: 6px 6px 0 0;
 
       p {
+        color: inherit;
+        font-family: inherit;
+        font-size: 1rem;
+        line-height: 1.6;
         margin: 0;
       }
     }
