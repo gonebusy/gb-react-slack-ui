@@ -11,13 +11,33 @@ export default class SlackTabResponse extends Component {
   componentWillMount() {
   }
 
+  refreshAttachment(command) {
+    if (command === '/today') {
+      return (
+        <div className="slack__response-attachment">
+          <div className="slack__response-attachment-body">
+            <div className="c-message__content_header">
+              <span className="c-message__sender">
+                <span className="slack__app-timestamp">Last Updated | Today at {moment().format('h:mm a')}</span>
+              </span>
+              <div className="slack__response-attachment-text">
+                  <span className="slack__response-attachment-button">♻ Refresh</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
   render() {
     const {
-      heading,
-      title,
+      command,
       description,
+      heading,
       members,
-      showAddedToGoogleCalender
+      showAddedToGoogleCalender,
+      title,
     } = this.props;
     return (
       <Fragment>
@@ -62,6 +82,7 @@ export default class SlackTabResponse extends Component {
               </div>
             </div>
           </div>
+          { this.refreshAttachment(command) }
         </div>
       </Fragment>
 
@@ -70,17 +91,19 @@ export default class SlackTabResponse extends Component {
 }
 
 SlackTabResponse.defaultProps = {
-  heading: '',
-  title: '',
+  command: null,
   description: '',
+  heading: '',
   members: '',
-  showAddedToGoogleCalender: false
+  showAddedToGoogleCalender: false,
+  title: '',
 };
 
 SlackTabResponse.propTypes = {
-  heading: PropTypes.string,
-  title: PropTypes.string,
+  command: PropTypes.string,
   description: PropTypes.string,
+  heading: PropTypes.string,
   members: PropTypes.string,
-  showAddedToGoogleCalender: PropTypes.bool
+  showAddedToGoogleCalender: PropTypes.bool,
+  title: PropTypes.string,
 };
