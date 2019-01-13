@@ -21,7 +21,7 @@ export default class SlackTabResponse extends Component {
                 <span className="slack__app-timestamp">Last Updated | Today at {moment().format('h:mm a')}</span>
               </span>
               <div className="slack__response-attachment-text">
-                  <span className="slack__response-attachment-button">♻ Refresh</span>
+                  <span className="slack__response-attachment-button basic">♻<span className="basic">Refresh</span></span>
               </div>
             </div>
           </div>
