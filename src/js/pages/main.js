@@ -13,6 +13,7 @@ const Main = function() {
       <section className="demo">
         <Slack
           message="/gonebusy book Interview with @brucewayne tomorrow at 1pm"
+          buttonText="'Edit Details"
           responseHeading="You're all set."
           responseTitle="Interview with Bruce Wayne"
           responseDescription={`${moment().add(1, 'days').format('MMMM Do')} from 1PM to 2PM`}
@@ -35,10 +36,12 @@ const Main = function() {
           responseMembers="With @yourslackname, @joker, @brucewayne"
           message="this shows the /today functionality"
           command="/today"
+          buttonText="Join Meeting"
         />
       </section>
       <section className="demo">
         <Slack
+          buttonText="Edit Details"
           responseHeading="You're all set."
           responseTitle="Monday"
           responseDescription={`${moment().startOf('isoWeek').weekday(8).format('MMMM Do')} from 1PM to 2PM`}

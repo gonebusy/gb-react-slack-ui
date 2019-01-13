@@ -81,6 +81,7 @@ export default class Slack extends Component {
   render() {
     const {
       command,
+      buttonText,
       responseHeading,
       responseTitle,
       responseDescription,
@@ -109,6 +110,7 @@ export default class Slack extends Component {
           {showResponse && (
             <SlackTab className="slack__tab-response" header={false}>
               <SlackTabResponse
+                buttonText={buttonText}
                 command={command}
                 heading={responseHeading}
                 title={responseTitle}
@@ -128,6 +130,7 @@ export default class Slack extends Component {
 Slack.defaultProps = {
   message: '',
   command: '/gonebusy',
+  buttonText: '',
   responseHeading: '',
   responseTitle: '',
   responseDescription: '',
@@ -138,6 +141,7 @@ Slack.defaultProps = {
 Slack.propTypes = {
   message: PropTypes.string,
   command: PropTypes.string,
+  buttonText: PropTypes.required,
   responseHeading: PropTypes.string,
   responseTitle: PropTypes.string,
   responseDescription: PropTypes.string,

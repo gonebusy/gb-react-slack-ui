@@ -32,7 +32,8 @@ export default class SlackTabResponse extends Component {
 
   render() {
     const {
-      command,
+      buttonText,
+      command,        
       description,
       heading,
       members,
@@ -76,7 +77,7 @@ export default class SlackTabResponse extends Component {
                   </div>
                 )}
                 <div className="slack__response-attachment-text">
-                  <span className="slack__response-attachment-button">Edit Details</span>
+                  <span className="slack__response-attachment-button">{ buttonText }</span>
                   <span className="slack__response-attachment-combo-box">More actions...</span>
                 </div>
               </div>
@@ -91,6 +92,7 @@ export default class SlackTabResponse extends Component {
 }
 
 SlackTabResponse.defaultProps = {
+  buttonText: '',
   command: null,
   description: '',
   heading: '',
@@ -100,6 +102,7 @@ SlackTabResponse.defaultProps = {
 };
 
 SlackTabResponse.propTypes = {
+  buttonText: PropTypes.string.required,
   command: PropTypes.string,
   description: PropTypes.string,
   heading: PropTypes.string,
