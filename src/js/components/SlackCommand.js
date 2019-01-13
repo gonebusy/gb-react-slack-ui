@@ -81,12 +81,8 @@ export default class SlackCommand extends Component {
   render() {
     const {
       command,
-      buttonText,
       responseHeading,
-      responseTitle,
-      responseDescription,
-      responseMembers,
-      responseShowAddedToGoogleCalender
+      events,
     } = this.props;
     const { messageText, showResponse } = this.state;
     const appSearch = String(messageText).match(/\/[a-z]+$/);
@@ -108,16 +104,12 @@ export default class SlackCommand extends Component {
           )
           }
           {showResponse && (
-            <SlackTab className="slack__tab-response" header={false}>
-              <SlackTabResponse
-                buttonText={buttonText}
-                command={command}
-                heading={responseHeading}
-                title={responseTitle}
-                description={responseDescription}
-                members={responseMembers}
-                showAddedToGoogleCalender={responseShowAddedToGoogleCalender}
-              />
+             <SlackTab className="slack__tab-response" header={false}>
+               <SlackTabResponse
+                 command={command}
+                 responseHeading={responseHeading}
+                 events={events}
+               />
             </SlackTab>
           )}
         </div>
@@ -128,23 +120,23 @@ export default class SlackCommand extends Component {
 }
 
 SlackCommand.defaultProps = {
+  command: '',
   message: '',
-  command: '/gonebusy',
-  buttonText: '',
   responseHeading: '',
-  responseTitle: '',
-  responseDescription: '',
-  responseMembers: '',
-  responseShowAddedToGoogleCalender: false
+  events: [],
 };
 
 SlackCommand.propTypes = {
-  message: PropTypes.string,
   command: PropTypes.string,
-  buttonText: PropTypes.string.isRequired,
+  message: PropTypes.string,
   responseHeading: PropTypes.string,
-  responseTitle: PropTypes.string,
-  responseDescription: PropTypes.string,
-  responseMembers: PropTypes.string,
-  responseShowAddedToGoogleCalender: PropTypes.bool
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      buttonText: PropTypes.string.isRequired,
+      responseTitle: PropTypes.string,
+      responseDescription: PropTypes.string,
+      responseMembers: PropTypes.string,
+      responseShowAddedToGoogleCalender: PropTypes.bool
+    })
+  ),
 };

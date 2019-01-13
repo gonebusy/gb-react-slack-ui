@@ -13,12 +13,16 @@ const Main = function() {
       <section className="demo">
         <SlackCommand
           message="/gonebusy book Interview with @brucewayne tomorrow at 1pm"
-          buttonText="'Edit Details"
           responseHeading="You're all set."
-          responseTitle="Interview with Bruce Wayne"
-          responseDescription={`${moment().add(1, 'days').format('MMMM Do')} from 1PM to 2PM`}
-          responseMembers="With @yourslackname, @brucewayne"
-          responseShowAddedToGoogleCalender
+          events={[
+            {
+              buttonText: "Edit Details",
+              responseTitle: "Interview with Bruce Wayne",
+              responseDescription: `${moment().add(1, 'days').format('MMMM Do')} from 1PM to 2PM`,
+              responseMembers: "With @yourslackname, @brucewayne",
+              responseShowAddedToGoogleCalender: true
+            }
+          ]}
         />
         <div className="demo__content">
           <h1 className="demo__heading">Never leave Slack to get more from your Google Calendar.</h1>
@@ -30,24 +34,40 @@ const Main = function() {
       </section>
       <section className="demo">
         <SlackCommand
-          responseHeading="Here's today:"
-          responseTitle="Coffee"
-          responseDescription="☕️ today from 10:00AM to 10:30AM"
-          responseMembers="With @yourslackname, @joker, @brucewayne"
-          message="this shows the /today functionality"
           command="/today"
-          buttonText="Join Meeting"
+          message="this shows the /today functionality"
+          responseHeading="Here's today:"
+          events={[
+            {
+              responseTitle: "Coffee",
+              responseDescription: "☕ today from 10:00AM to 10:30AM",
+              responseMembers: "With @yourslackname, @joker, @brucewayne",
+              buttonText: "Join Meeting"
+            }
+          ]}
         />
       </section>
       <section className="demo">
         <SlackCommand
-          buttonText="Edit Details"
+          command="/gonebusy"
+          message="/gonebusy this week"
           responseHeading="You're all set."
-          responseTitle="Monday"
-          responseDescription={`${moment().startOf('isoWeek').weekday(8).format('MMMM Do')} from 1PM to 2PM`}
-          responseMembers="With @yourslackname, @harleyquinn"
-          message="Monday, I could book something completely different with @harleyquinn with /gonebusy"
-          responseShowAddedToGoogleCalender
+          events={[
+            {
+              buttonText: "Edit Details",
+              responseTitle: "Monday",
+              responseDescription: `${moment().startOf('isoWeek').weekday(8).format('MMMM Do')} from 1PM to 2PM`,
+              responseMembers: "With @yourslackname, @harleyquinn",
+              responseShowAddedToGoogleCalender: true
+            },
+            {
+              buttonText: "Edit Details",
+              responseTitle: "Friday",
+              responseDescription: `${moment().startOf('isoWeek').weekday(8).format('MMMM Do')} from 1PM to 2PM`,
+              responseMembers: "With @yourslackname, @joker",
+              responseShowAddedToGoogleCalender: true
+            },
+          ]}
         />
       </section>
     </Fragment>

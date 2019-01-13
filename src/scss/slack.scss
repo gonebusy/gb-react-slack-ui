@@ -202,12 +202,11 @@
 
   &__response {
     &-attachments {
-      border-left: 4px solid $color-light-green;
       margin-left: 4px;
     }
 
     &-attachment {
-      padding: 0 12px;
+      padding: 0 0 2px;
 
       &-title {
         font-weight: 600;
@@ -232,7 +231,13 @@
       }
 
       &-body {
+        border-left: 4px solid $color-light-green;
         margin: 8px 0 0;
+        padding: 0 12px;
+
+        &.no-border {
+          border: 0;
+        }
       }
 
       &-footer {
