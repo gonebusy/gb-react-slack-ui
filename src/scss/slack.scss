@@ -230,6 +230,10 @@
         }
       }
 
+      &-body {
+        margin: 8px 0 0;
+      }
+
       &-footer {
         &-icon {
           width: 16px;
@@ -251,24 +255,33 @@
       &-button,
       &-combo-box {
         background: $color-white;
+        border-radius: 4px;
         box-shadow: inset 0 0 0 1px rgba(#008952, .3);
         color: #008952;
+        display: inline-flex;
+        font-size: 12px;
         font-weight: 400;
+        height: 28px;
+        justify-content: center;
+        line-height: 27px;
         margin: 8px 8px 2px 0;
         max-width: 220px;
-        padding: 0 10px;
-        vertical-align: middle;
-        font-size: 12px;
-        height: 28px;
-        border-radius: 4px;
-        display: inline-flex;
-        justify-content: center;
         outline: none;
+        padding: 0 10px;
         position: relative;
         text-align: center;
         user-select: none;
+        vertical-align: middle;
         white-space: nowrap;
-        line-height: 27px;
+
+        &.basic {
+            box-shadow: inset 0 0 0 1px rgba($color-gray, .3);
+        }
+
+        .basic {
+          color: #000;
+          margin-left: 3px;
+        }
       }
 
       &-combo-box {
@@ -303,7 +316,7 @@
     right: 0;
     top: auto;
 
-    &--response {
+    &-response {
       left: 0;
       bottom: 10px;
       padding: 4px 10px 16px;
@@ -323,6 +336,10 @@
       border-radius: 6px 6px 0 0;
 
       p {
+        color: inherit;
+        font-family: inherit;
+        font-size: 1rem;
+        line-height: 1.6;
         margin: 0;
       }
     }

@@ -10,6 +10,10 @@
     "secondaryName":"Bruce Lee"
   },
   {
+    "name":"brucewillis",
+    "secondaryName":"Bruce Willis"
+  },
+  {
     "online":true,
     "label":"APP",
     "name":"gonebusy",
@@ -27,5 +31,19 @@
   {
     "name":"posionivy",
     "secondaryName":"Maggie Geha"
+  },
+  {
+    "name":"theboywonder",
+    "secondaryName":"TheBoyWonder"
+  },
+  {
+    "online":true,
+    "name":"wonderwheel",
+    "secondaryName":"TheWonderWheel"
+  },
+  {
+    "online":true,
+    "name":"wonderwoman",
+    "secondaryName":"Wonder Woman"
   }
 ]

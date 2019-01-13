@@ -107,8 +107,9 @@ export default class Slack extends Component {
           )
           }
           {showResponse && (
-            <SlackTab className="slack__tab--response" header={false}>
+            <SlackTab className="slack__tab-response" header={false}>
               <SlackTabResponse
+                command={command}
                 heading={responseHeading}
                 title={responseTitle}
                 description={responseDescription}

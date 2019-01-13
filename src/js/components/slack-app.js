@@ -5,6 +5,33 @@ export default class SlackApp extends Component {
   componentWillMount() {
   }
 
+  commandHelp(command) {
+    let text;
+    switch(command) {
+      case '/gonebusy':
+        text = '[ &lt;notion of time&gt; | book | feedback | help | ... ]';
+          break;
+        default:
+          text = null;
+    }
+    return text;
+  }
+
+  commandDescription(command) {
+    let text;
+    switch(command) {
+      case '/gonebusy':
+        text = 'Run Gonebusy commands from anywhere';
+        break;
+      case '/today':
+        text = 'Today\'s  events';
+        break;
+      default:
+        text = null;
+    }
+    return text;
+  }
+
   render() {
     const { name, command } = this.props;
     return (
@@ -15,11 +42,11 @@ export default class SlackApp extends Component {
         </div>
         <div className="slack__tab-item active">
           <div>
-            <span className="command">{command}</span>
-              [ &lt;notion of time&gt; | book | feedback | help | ... ]
+            <span className="command">{command} </span>
+            { this.commandHelp(command) }
           </div>
           <div>
-            <span className="cmddesc">Run Gonebusy commands from anywhere</span>
+            <span className="cmddesc">{ this.commandDescription(command) }</span>
           </div>
         </div>
       </Fragment>
