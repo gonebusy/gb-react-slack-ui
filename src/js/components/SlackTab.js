@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import SlackTabHeader from './slack-tab-header';
+import SlackTabHeader from './SlackTabHeader';
 
 
 export default class SlackTab extends Component {

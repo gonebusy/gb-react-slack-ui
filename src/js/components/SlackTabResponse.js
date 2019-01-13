@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import SlackText from './slack-text';
+import SlackText from './SlackText';
 import EyeFilledIcon from '../../assets/svg/eye-filled-icon.svg';
 import GonebusyAvatar from '../../assets/svg/gonebusy-avatar.svg';
 import DefaultAvatar from '../../assets/svg/default-avatar.svg';
@@ -33,7 +33,7 @@ export default class SlackTabResponse extends Component {
   render() {
     const {
       buttonText,
-      command,        
+      command,
       description,
       heading,
       members,
@@ -102,7 +102,7 @@ SlackTabResponse.defaultProps = {
 };
 
 SlackTabResponse.propTypes = {
-  buttonText: PropTypes.string.required,
+  buttonText: PropTypes.string.isRequired,
   command: PropTypes.string,
   description: PropTypes.string,
   heading: PropTypes.string,

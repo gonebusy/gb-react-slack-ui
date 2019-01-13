@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
-import Slack from '../components/slack';
+import SlackCommand from '../components/SlackCommand';
 
 
 import '../../scss/main.scss';
@@ -11,7 +11,7 @@ const Main = function() {
   return (
     <Fragment>
       <section className="demo">
-        <Slack
+        <SlackCommand
           message="/gonebusy book Interview with @brucewayne tomorrow at 1pm"
           buttonText="'Edit Details"
           responseHeading="You're all set."
@@ -29,7 +29,7 @@ const Main = function() {
         </div>
       </section>
       <section className="demo">
-        <Slack
+        <SlackCommand
           responseHeading="Here's today:"
           responseTitle="Coffee"
           responseDescription="☕️ today from 10:00AM to 10:30AM"
@@ -40,7 +40,7 @@ const Main = function() {
         />
       </section>
       <section className="demo">
-        <Slack
+        <SlackCommand
           buttonText="Edit Details"
           responseHeading="You're all set."
           responseTitle="Monday"

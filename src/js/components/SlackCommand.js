@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TweenLite, Linear } from 'gsap';
-import SlackMessage from './slack-message';
-import SlackTab from './slack-tab';
-import SlackApp from './slack-app';
-import SlackTabMember from './slack-tab-member';
-import SlackTabResponse from './slack-tab-response';
+import SlackMessage from './SlackMessage';
+import SlackTab from './SlackTab';
+import SlackApp from './SlackApp';
+import SlackTabMember from './SlackTabMember';
+import SlackTabResponse from './SlackTabResponse';
 import members from '../../data/members.json';
 import 'gsap/TextPlugin';
 
 import '../../scss/slack.scss';
 
-export default class Slack extends Component {
+export default class SlackCommand extends Component {
   constructor() {
     super();
     this.state = {
@@ -127,7 +127,7 @@ export default class Slack extends Component {
   }
 }
 
-Slack.defaultProps = {
+SlackCommand.defaultProps = {
   message: '',
   command: '/gonebusy',
   buttonText: '',
@@ -138,10 +138,10 @@ Slack.defaultProps = {
   responseShowAddedToGoogleCalender: false
 };
 
-Slack.propTypes = {
+SlackCommand.propTypes = {
   message: PropTypes.string,
   command: PropTypes.string,
-  buttonText: PropTypes.required,
+  buttonText: PropTypes.string.isRequired,
   responseHeading: PropTypes.string,
   responseTitle: PropTypes.string,
   responseDescription: PropTypes.string,
