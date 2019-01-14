@@ -18,13 +18,13 @@ export default class SlackText extends Component {
 
     for (let i = 0; i < members.length; i++) {
       const member = members[i];
-      const username = `@${member.name}`;
 
-      if (text.indexOf(username) > -1) {
-        const splitted = text.split(username);
-        text = `${splitted[0]}<span class="slack__mention">${username}</span>${splitted[1]}`;
+      if (text.indexOf(member.name) > -1) {
+        const splitted = text.split(member.name);
+        text = `${splitted[0]}<span class="slack__mention">${member.name}</span>${splitted[1]}`;
       }
     }
+
     /* eslint-disable */
     return <div dangerouslySetInnerHTML={{__html: text}} />
     /* eslint-enable */

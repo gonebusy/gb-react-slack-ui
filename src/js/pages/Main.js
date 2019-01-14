@@ -64,7 +64,7 @@ const Main = function() {
               buttonText: "Edit Details",
               responseTitle: "Friday",
               responseDescription: `${moment().startOf('isoWeek').weekday(8).format('MMMM Do')} from 1PM to 2PM`,
-              responseMembers: "With @yourslackname, @joker",
+              responseMembers: "With @yourslackname, @joker, client@example.com",
               responseShowAddedToGoogleCalender: true
             },
           ]}
