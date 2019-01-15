@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import members from '../../data/members.json';
 
 export default class SlackText extends Component {
-  componentWillMount() {
+  componentDidUpdate() {
   }
 
   render() {
@@ -26,7 +26,9 @@ export default class SlackText extends Component {
     }
 
     /* eslint-disable */
-    return <div dangerouslySetInnerHTML={{__html: text}} />
+    return (
+      <div dangerouslySetInnerHTML={{__html: text}} />
+    )
     /* eslint-enable */
   }
 }

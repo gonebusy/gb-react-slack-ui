@@ -8,7 +8,6 @@ import SlackTabMember from './SlackTabMember';
 import SlackTabResponse from './SlackTabResponse';
 import members from '../../data/members.json';
 import 'gsap/TextPlugin';
-import $ from 'jquery';
 import '../../scss/slack.scss';
 
 export default class SlackCommand extends Component {
@@ -33,14 +32,6 @@ export default class SlackCommand extends Component {
     const speed = 9;
     TweenLite.to(span, message.length / speed, {
       text: message,
-      onStart: () => {
-          const coords = this.target.getBoundingClientRect()
-          if (thisLetter) {
-            const pos = thisLetter.offset()
-            const width = thisLetter.width()
-            cursor.css({left:pos.left + width, top:pos.top})
-          }
-      },
       onUpdate: () => {
         this.setState({ messageText: span.textContent });
       },
