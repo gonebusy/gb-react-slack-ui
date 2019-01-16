@@ -1,8 +1,10 @@
 import './App'
 
 export { default as SlackCommand } from './js/components/SlackCommand'
+export { default as SlackActionSelect } from './js/components/SlackActionSelect'
 export { default as SlackApp } from './js/components/SlackApp'
 export { default as SlackMessage } from './js/components/SlackMessage'
+export { default as SlackMoreActions } from './js/components/SlackMoreActions'
 export { default as SlackTab } from './js/components/SlackTab'
 export { default as SlackTabHeader } from './js/components/SlackTabHeader'
 export { default as SlackTabMember } from './js/components/SlackTabMember'

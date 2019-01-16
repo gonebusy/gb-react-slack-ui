@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import SlackMoreActions from './SlackMoreActions';
 import SlackText from './SlackText';
 import EyeFilledIcon from '../../assets/svg/eye-filled-icon.svg';
 import GonebusyAvatar from '../../assets/svg/gonebusy-avatar.svg';
@@ -16,15 +17,15 @@ export default class SlackTabResponse extends Component {
       return (
         <div className="slack__response-attachment">
             <div className="slack__response-attachment-body no-border">
-            <div className="c-message__content_header">
-              <span className="c-message__sender">
-                <span className="slack__app-timestamp">Last Updated | Today at {moment().format('h:mm a')}</span>
-              </span>
-              <div className="slack__response-attachment-text">
-                  <span className="slack__response-attachment-button basic">♻<span className="basic">Refresh</span></span>
-              </div>
+                <div className="c-message__content_header">
+                    <span className="c-message__sender">
+                        <span className="slack__app-timestamp">Last Updated | Today at {moment().format('h:mm a')}</span>
+                    </span>
+                    <div className="slack__response-attachment-text">
+                        <span className="slack__response-attachment-button basic">♻<span className="basic">Refresh</span></span>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
       );
     }
@@ -35,55 +36,56 @@ export default class SlackTabResponse extends Component {
       command,
       responseHeading,
       events,
+      moreActionsRef,
     } = this.props;
     return (
       <Fragment>
-        <div className="slack__label">
-          <EyeFilledIcon className="slack__label-icon" />
-          <span className="slack__label-text">Only visible to you</span>
-        </div>
-        <div className="slack__gutter">
-          <GonebusyAvatar className="slack__avatar-image" />
-        </div>
-        <div className="slack__content" data-qa="message_content">
-          <div className="c-message__content_header">
-            <span className="c-message__sender">
-              <span className="slack__app-name">Gonebusy</span>
-              <span className="slack__app-badge">App</span>
-              <span className="slack__app-timestamp">{moment().format('h:mm a')}</span>
-            </span>
+          <div className="slack__label">
+              <EyeFilledIcon className="slack__label-icon" />
+              <span className="slack__label-text">Only visible to you</span>
           </div>
-          <span className="slack__response-body">{ responseHeading }</span>
-          <div className="slack__response-attachments">
-            {
-              events.map((event, i) => (
-                <div key={i} className="slack__response-attachment">
-                  <div className="slack__response-attachment-body">
-                    <div className="slack__response-attachment-author">
-                      <DefaultAvatar className="slack__response-attachment-author-icon" />
-                      <span className="slack__response-attachment-author-name">Your Slack Name</span>
-                    </div>
-                    <div className="slack__response-attachment-title">{ event.responseTitle }</div>
-                    <div className="slack__response-attachment-text">{ event.responseDescription }</div>
-                    <div className="slack__response-attachment-text">
-                      <SlackText text={ event.responseMembers } />
-                    </div>
-                    {event.showAddedToGoogleCalender && (
-                      <div className="slack__response-attachment-footer">
-                        <GoogleCalendar className="slack__response-attachment-footer-icon" />
-                        <span className="slack__response-attachment-footer-text">Added to Google Calendar</span>
+          <div className="slack__gutter">
+              <GonebusyAvatar className="slack__avatar-image" />
+          </div>
+          <div className="slack__content" data-qa="message_content">
+              <div className="c-message__content_header">
+                  <span className="c-message__sender">
+                      <span className="slack__app-name">Gonebusy</span>
+                      <span className="slack__app-badge">App</span>
+                      <span className="slack__app-timestamp">{moment().format('h:mm a')}</span>
+                  </span>
+              </div>
+              <span className="slack__response-body">{ responseHeading }</span>
+              <div className="slack__response-attachments">
+                  {
+                  events.map((event, i) => (
+                  <div key={i} className="slack__response-attachment">
+                      <div className="slack__response-attachment-body">
+                          <div className="slack__response-attachment-author">
+                              <DefaultAvatar className="slack__response-attachment-author-icon" />
+                              <span className="slack__response-attachment-author-name">Your Slack Name</span>
+                          </div>
+                          <div className="slack__response-attachment-title">{ event.responseTitle }</div>
+                          <div className="slack__response-attachment-text">{ event.responseDescription }</div>
+                          <div className="slack__response-attachment-text">
+                              <SlackText text={ event.responseMembers } />
+                          </div>
+                          {event.showAddedToGoogleCalender && (
+                          <div className="slack__response-attachment-footer">
+                              <GoogleCalendar className="slack__response-attachment-footer-icon" />
+                              <span className="slack__response-attachment-footer-text">Added to Google Calendar</span>
+                          </div>
+                          )}
+                          <div className="slack__response-attachment-text">
+                              <span className="slack__response-attachment-button">{ event.buttonText }</span>
+                              <SlackMoreActions ref={moreActionsRef} />
+                          </div>
                       </div>
-                    )}
-                    <div className="slack__response-attachment-text">
-                      <span className="slack__response-attachment-button">{ event.buttonText }</span>
-                      <span className="slack__response-attachment-combo-box">More actions...</span>
-                    </div>
                   </div>
-                </div>
-              ))
-            }
-          </div>
-          { this.refreshAttachment(command) }
+                  ))
+                  }
+        </div>
+        { this.refreshAttachment(command) }
         </div>
       </Fragment>
 
@@ -109,4 +111,5 @@ SlackTabResponse.propTypes = {
       responseShowAddedToGoogleCalender: PropTypes.bool
     })
   ),
+  moreActionsRef: PropTypes.object,
 };
