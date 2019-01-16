@@ -76,7 +76,7 @@ export default class SlackTabResponse extends Component {
                               <span className="slack__response-attachment-footer-text">Added to Google Calendar</span>
                           </div>
                           )}
-                          <div className="slack__response-attachment-text">
+                          <div className="slack__response-attachment-text-actionrow">
                               <span className="slack__response-attachment-button">{ event.buttonText }</span>
                               <SlackMoreActions ref={moreActionsRef} />
                           </div>
