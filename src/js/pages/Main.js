@@ -73,17 +73,19 @@ const Main = function() {
           <section className="demo">
               <SlackActionSelect
                   responseHeading="You're all set."
+                  selectedAction='View Description'
                   events={[
                       {
                           buttonText: "Edit Details",
                           responseTitle: "Interview with Bruce Wayne",
                           responseDescription: `${moment().add(1, 'days').format('MMMM Do')} from 1PM to 2PM`,
+                          responseFullDescription: "something really long and lengthy",
                           responseMembers: "With @yourslackname, @brucewayne",
-                          responseShowAddedToGoogleCalender: true
+                          responseShowAddedToGoogleCalender: true,
                       }
                   ]}
               />
-          </section>xs              
+          </section>xs
       </Fragment>
   );
 };

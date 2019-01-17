@@ -37,6 +37,8 @@ export default class SlackTabResponse extends Component {
       responseHeading,
       events,
       moreActionsRef,
+      selectedAction,
+      fullDescriptionVisible,
     } = this.props;
     return (
       <Fragment>
@@ -70,6 +72,9 @@ export default class SlackTabResponse extends Component {
                           <div className="slack__response-attachment-text">
                               <SlackText text={ event.responseMembers } />
                           </div>
+                          {fullDescriptionVisible && (
+                          <div className="slack__response-attachment-text-full-description">{ event.responseFullDescription }</div>
+                          )}
                           {event.showAddedToGoogleCalender && (
                           <div className="slack__response-attachment-footer">
                               <GoogleCalendar className="slack__response-attachment-footer-icon" />
@@ -78,7 +83,7 @@ export default class SlackTabResponse extends Component {
                           )}
                           <div className="slack__response-attachment-text-actionrow">
                               <span className="slack__response-attachment-button">{ event.buttonText }</span>
-                              <SlackMoreActions ref={moreActionsRef} />
+                              <SlackMoreActions ref={moreActionsRef} selectedAction={selectedAction} />
                           </div>
                       </div>
                   </div>
@@ -112,4 +117,6 @@ SlackTabResponse.propTypes = {
     })
   ),
   moreActionsRef: PropTypes.object,
+  selectedAction: PropTypes.string,
+  fullDescriptionVisible: PropTypes.bool,
 };

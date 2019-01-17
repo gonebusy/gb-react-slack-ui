@@ -20,43 +20,43 @@ export default class SlackCommand extends Component {
   }
 
   componentDidMount() {
-    TweenLite.delayedCall(1, () => {
-      this.animate();
-    });
+    this.animate();
   }
 
   animate() {
     const { message } = this.props;
 
     let span = document.createElement('span');
-    const speed = 9;
-    TweenLite.to(span, message.length / speed, {
-      text: message,
-      onUpdate: () => {
-        this.setState({ messageText: span.textContent });
-      },
-      onComplete: () => {
-        TweenLite.delayedCall(1, () => {
-          this.setState({
-            messageText: null
+    const speed = 10;
+    TweenLite.delayedCall(1, () => {
+      TweenLite.to(span, message.length / speed, {
+        text: message,
+        onUpdate: () => {
+          this.setState({ messageText: span.textContent });
+        },
+        onComplete: () => {
+          TweenLite.delayedCall(1, () => {
+            this.setState({
+              messageText: null
+            });
           });
-        });
 
-        TweenLite.delayedCall(1.2, () => {
-          this.setState({
-            showResponse: true
+          TweenLite.delayedCall(1.2, () => {
+            this.setState({
+              showResponse: true
+            });
           });
-        });
 
-        TweenLite.delayedCall(8, () => {
-          this.setState({
-            showResponse: false
+          TweenLite.delayedCall(8, () => {
+            this.setState({
+              showResponse: false
+            });
+            this.animate();
           });
-          this.animate();
-        });
-        span = null;
-      },
-      ease: Linear.easeNone
+          span = null;
+        },
+        ease: Linear.easeNone
+      });
     });
   }
 

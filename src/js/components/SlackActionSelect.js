@@ -14,45 +14,42 @@ export default class SlackActionSelect extends Component {
   constructor() {
     super();
     this.moreActionsRef = React.createRef();
+    this.state = {
+      fullDescriptionVisible: false
+    }
+  }
+
+  showFullDescription() {
+      this.setState({
+          fullDescriptionVisible: true
+      });
+  }
+
+  hideFullDescription() {
+      this.setState({
+          fullDescriptionVisible: false
+      });
   }
 
   componentDidMount() {
-    TweenLite.delayedCall(1, () => {
-      // this.animate();
-    });
+      this.animate();
   }
 
   animate() {
-    let span = document.createElement('span');
-    const speed = 9;
-    TweenLite.to(span, message.length / speed, {
-      text: message,
-      onUpdate: () => {
-        this.setState({ messageText: span.textContent });
-      },
-      onComplete: () => {
-        TweenLite.delayedCall(1, () => {
-          this.setState({
-            messageText: null
+      TweenLite.delayedCall(2, () => {
+          this.moreActionsRef.current.selectMoreActions();
+          TweenLite.delayedCall(.5, () => {
+              this.moreActionsRef.current.showDropdown();
+              TweenLite.delayedCall(1, () => {
+                  this.moreActionsRef.current.resetState();
+                  this.showFullDescription();
+                  TweenLite.delayedCall(5, () => {
+                      this.hideFullDescription();
+                      this.animate();
+                  });
+              });
           });
-        });
-
-        TweenLite.delayedCall(1.2, () => {
-          this.setState({
-            showResponse: true
-          });
-        });
-
-        TweenLite.delayedCall(8, () => {
-          this.setState({
-            showResponse: false
-          });
-          this.animate();
-        });
-        span = null;
-      },
-      ease: Linear.easeNone
-    });
+      });
   }
 
   render() {
@@ -60,8 +57,10 @@ export default class SlackActionSelect extends Component {
       command,
       message,
       responseHeading,
+      selectedAction,
       events,
     } = this.props;
+    const { fullDescriptionVisible } = this.state;
 
     return (
       <div className="slack">
@@ -72,6 +71,8 @@ export default class SlackActionSelect extends Component {
                     responseHeading={responseHeading}
                     events={events}
                     moreActionsRef={this.moreActionsRef}
+                    selectedAction={ selectedAction }
+                    fullDescriptionVisible={fullDescriptionVisible}
                   />
               </SlackTab>
           </div>
@@ -82,7 +83,24 @@ export default class SlackActionSelect extends Component {
 }
 
 SlackActionSelect.defaultProps = {
+  command: '',
+  message: '',
+  responseHeading: '',
+  events: [],
 };
 
 SlackActionSelect.propTypes = {
+  command: PropTypes.string,
+  message: PropTypes.string,
+  responseHeading: PropTypes.string,
+  selectedAction: PropTypes.string,
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      buttonText: PropTypes.string.isRequired,
+      responseTitle: PropTypes.string,
+      responseDescription: PropTypes.string,
+      responseMembers: PropTypes.string,
+      responseShowAddedToGoogleCalender: PropTypes.bool
+    })
+  ),
 };
