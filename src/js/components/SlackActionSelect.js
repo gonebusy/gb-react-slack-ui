@@ -9,47 +9,68 @@ import SlackTabResponse from './SlackTabResponse';
 import members from '../../data/members.json';
 import 'gsap/TextPlugin';
 import '../../scss/slack.scss';
+import cx from 'classnames';
 
 export default class SlackActionSelect extends Component {
   constructor() {
     super();
     this.moreActionsRef = React.createRef();
+    this.tabRef = React.createRef();
     this.state = {
+      blankResponse: false,
       fullDescriptionVisible: false
     }
   }
 
   showFullDescription() {
-      this.setState({
-          fullDescriptionVisible: true
-      });
+    this.setState({
+      fullDescriptionVisible: true
+    });
   }
 
   hideFullDescription() {
-      this.setState({
-          fullDescriptionVisible: false
-      });
+    this.setState({
+      fullDescriptionVisible: false
+    });
+  }
+
+  showBlankResponse() {
+    this.setState({
+      blankResponse: true
+    })
+  }
+
+  resetBlankResponse() {
+    this.setState({
+      blankResponse: false
+    })
   }
 
   componentDidMount() {
-      this.animate();
+    this.animate();
   }
 
   animate() {
-      TweenLite.delayedCall(2, () => {
-          this.moreActionsRef.current.selectMoreActions();
-          TweenLite.delayedCall(.5, () => {
-              this.moreActionsRef.current.showDropdown();
-              TweenLite.delayedCall(1, () => {
-                  this.moreActionsRef.current.resetState();
-                  this.showFullDescription();
-                  TweenLite.delayedCall(5, () => {
-                      this.hideFullDescription();
-                      this.animate();
-                  });
-              });
+    this.tabRef.current.resetBlankCanvas();
+    this.resetBlankResponse();
+    TweenLite.delayedCall(1, () => {
+      this.moreActionsRef.current.selectMoreActions();
+      TweenLite.delayedCall(.25, () => {
+        this.moreActionsRef.current.showDropdown();
+        TweenLite.delayedCall(.75, () => {
+          this.moreActionsRef.current.resetState();
+          this.showFullDescription();
+          TweenLite.delayedCall(5, () => {
+            this.tabRef.current.showBlankCanvas();
+            this.showBlankResponse();
+            this.hideFullDescription();
+            TweenLite.delayedCall(.25, () => {
+              this.animate();
+            });
           });
+        });
       });
+    });
   }
 
   render() {
@@ -60,13 +81,14 @@ export default class SlackActionSelect extends Component {
       selectedAction,
       events,
     } = this.props;
-    const { fullDescriptionVisible } = this.state;
+    const { blankResponse, fullDescriptionVisible } = this.state;
 
     return (
       <div className="slack">
           <div className="slack__tabs">
-              <SlackTab className="slack__tab-response" header={false}>
+              <SlackTab className={ cx('slack__tab-response', { 'blank': blankResponse }) } header={false}>
                   <SlackTabResponse
+                    ref={this.tabRef}
                     command={command}
                     responseHeading={responseHeading}
                     events={events}

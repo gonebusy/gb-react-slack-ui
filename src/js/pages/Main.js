@@ -47,7 +47,7 @@ const Main = function() {
                   ]}
               />
           </section>
-          <section className="demo">
+          <section className="demo large">
               <SlackCommand
                   command="/gonebusy"
                   message="/gonebusy this week"

@@ -59,6 +59,10 @@
     }
   }
 
+  .blank {
+    color: $color-almost-white;
+  }
+  
   &__tabs {
     position: relative;
     margin-bottom: 4px;
@@ -93,6 +97,10 @@
     &--self {
       background: $color-cream;
     }
+
+    &.blank {
+      background: $color-almost-white;
+    }
   }
 
   &__gutter {
@@ -124,6 +132,10 @@
       margin: auto 3px;
       padding: 1px 3px;
       text-transform: uppercase;
+
+      &.blank {
+        background-color: $color-almost-white;
+      }
     }
 
     &-timestamp {
@@ -324,6 +336,25 @@
           color: #000;
           margin-left: 3px;
         }
+      }
+
+      &-button-blank {
+        background: $color-almost-white;
+        box-shadow: inset 0 0 0 1px rgba($color-almost-white, .3);
+        color: $color-almost-white;
+        display: inline-flex;
+        font-size: 12px;
+        font-weight: 400;
+        height: 28px;
+        line-height: 27px;
+        margin: 1px 8px 2px 0;
+        max-width: 220px;
+        outline: none;
+        padding: 0 10px;
+        position: relative;
+        user-select: none;
+        vertical-align: middle;
+        white-space: nowrap;
       }
 
       &-combo-box {

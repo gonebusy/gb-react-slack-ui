@@ -9,8 +9,12 @@
     background-color: adjust-hue($color-sky-blue, 50%);
   }
 
+  &.large {
+    padding-top: 135px;
+  }
+    
   @include medium {
-    padding: 40px;
+    padding: 20px;
   }
 
   &__heading {

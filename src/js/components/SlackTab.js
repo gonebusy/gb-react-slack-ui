@@ -5,9 +5,6 @@ import SlackTabHeader from './SlackTabHeader';
 
 
 export default class SlackTab extends Component {
-  componentWillMount() {
-  }
-
   render() {
     const { header, className, children } = this.props;
     return (

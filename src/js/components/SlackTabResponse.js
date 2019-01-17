@@ -7,9 +7,26 @@ import EyeFilledIcon from '../../assets/svg/eye-filled-icon.svg';
 import GonebusyAvatar from '../../assets/svg/gonebusy-avatar.svg';
 import DefaultAvatar from '../../assets/svg/default-avatar.svg';
 import GoogleCalendar from '../../assets/svg/google-calendar.svg';
+import cx from 'classnames';
 
 export default class SlackTabResponse extends Component {
-  componentWillMount() {
+  constructor() {
+    super();
+    this.state = {
+      blankCanvas: false
+    }
+  }
+
+  showBlankCanvas() {
+    this.setState({
+      blankCanvas: true
+    })
+  }
+
+  resetBlankCanvas() {
+    this.setState({
+      blankCanvas: false
+    })
   }
 
   refreshAttachment(command) {
@@ -40,60 +57,73 @@ export default class SlackTabResponse extends Component {
       selectedAction,
       fullDescriptionVisible,
     } = this.props;
+    const { blankCanvas } = this.state;
     return (
       <Fragment>
           <div className="slack__label">
-              <EyeFilledIcon className="slack__label-icon" />
-              <span className="slack__label-text">Only visible to you</span>
+              { !blankCanvas && (
+                  <EyeFilledIcon className="slack__label-icon" />
+              )}
+              <span className={ cx('slack__label-text', { 'blank': blankCanvas }) }>Only visible to you</span>
           </div>
           <div className="slack__gutter">
-              <GonebusyAvatar className="slack__avatar-image" />
+              { !blankCanvas && (
+                  <GonebusyAvatar className="slack__avatar-image" />
+              )}
           </div>
-          <div className="slack__content" data-qa="message_content">
-              <div className="c-message__content_header">
-                  <span className="c-message__sender">
-                      <span className="slack__app-name">Gonebusy</span>
-                      <span className="slack__app-badge">App</span>
-                      <span className="slack__app-timestamp">{moment().format('h:mm a')}</span>
-                  </span>
-              </div>
-              <span className="slack__response-body">{ responseHeading }</span>
-              <div className="slack__response-attachments">
-                  {
+          <div className={ cx('slack__content', { 'blank': blankCanvas }) } data-qa="message_content">
+            <div className="c-message__content_header">
+                <span className="c-message__sender">
+                    <span className={ cx("slack__app-name", { 'blank': blankCanvas }) }>Gonebusy</span>
+                    <span className={ cx("slack__app-badge", { 'blank': blankCanvas }) }>App</span>
+                    <span className={ cx("slack__app-timestamp", { 'blank': blankCanvas }) }>{moment().format('h:mm a')}</span>
+                </span>
+            </div>
+            <span className="slack__response-body">{ responseHeading }</span>
+            <div className="slack__response-attachments">
+                {
                   events.map((event, i) => (
-                  <div key={i} className="slack__response-attachment">
-                      <div className="slack__response-attachment-body">
-                          <div className="slack__response-attachment-author">
-                              <DefaultAvatar className="slack__response-attachment-author-icon" />
-                              <span className="slack__response-attachment-author-name">Your Slack Name</span>
-                          </div>
-                          <div className="slack__response-attachment-title">{ event.responseTitle }</div>
-                          <div className="slack__response-attachment-text">{ event.responseDescription }</div>
-                          <div className="slack__response-attachment-text">
-                              <SlackText text={ event.responseMembers } />
-                          </div>
-                          {fullDescriptionVisible && (
-                          <div className="slack__response-attachment-text-full-description">{ event.responseFullDescription }</div>
-                          )}
-                          {event.showAddedToGoogleCalender && (
-                          <div className="slack__response-attachment-footer">
-                              <GoogleCalendar className="slack__response-attachment-footer-icon" />
-                              <span className="slack__response-attachment-footer-text">Added to Google Calendar</span>
-                          </div>
-                          )}
-                          <div className="slack__response-attachment-text-actionrow">
-                              <span className="slack__response-attachment-button">{ event.buttonText }</span>
-                              <SlackMoreActions ref={moreActionsRef} selectedAction={selectedAction} />
-                          </div>
-                      </div>
-                  </div>
+                    <div key={i} className="slack__response-attachment">
+                        <div className={ cx("slack__response-attachment-body", { 'no-border': blankCanvas }) }>
+                            <div className="slack__response-attachment-author">
+                                { !blankCanvas && (
+                                    <DefaultAvatar className="slack__response-attachment-author-icon" />
+                                )}
+                                <span className={ cx('slack__response-attachment-author-name', { 'blank': blankCanvas }) }>Your Slack Name</span>
+                            </div>
+                            <div className="slack__response-attachment-title">{ event.responseTitle }</div>
+                            <div className="slack__response-attachment-text">{ event.responseDescription }</div>
+                            <div className="slack__response-attachment-text">
+                                <SlackText text={ event.responseMembers } blank={blankCanvas} />
+                            </div>
+                            {fullDescriptionVisible && (
+                               <div className="slack__response-attachment-text-full-description">{ event.responseFullDescription }</div>
+                            )}
+                            {event.showAddedToGoogleCalender && (
+                               <div className="slack__response-attachment-footer">
+                                   <GoogleCalendar className="slack__response-attachment-footer-icon" />
+                                   <span className="slack__response-attachment-footer-text">Added to Google Calendar</span>
+                               </div>
+                            )}
+                            <div className="slack__response-attachment-text-actionrow">
+                                { blankCanvas && (
+                                  <span className="slack__response-attachment-button-blank">blank</span>
+                                )}
+                                { !blankCanvas && (
+                                  <span className="slack__response-attachment-button">{ event.buttonText }</span>
+                                )}
+                                { !blankCanvas && (
+                                  <SlackMoreActions ref={moreActionsRef} selectedAction={selectedAction} />
+                                )}
+                            </div>
+                        </div>
+                    </div>
                   ))
-                  }
-        </div>
-        { this.refreshAttachment(command) }
+                }
+            </div>
+            { this.refreshAttachment(command) }
         </div>
       </Fragment>
-
     );
   }
 }
