@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import handleViewport from 'react-in-viewport';
 import PropTypes from 'prop-types';
 import { TweenLite, Linear } from 'gsap';
 import SlackMessage from './SlackMessage';
@@ -11,15 +12,36 @@ import 'gsap/TextPlugin';
 import '../../scss/slack.scss';
 import cx from 'classnames';
 
-export default class SlackActionSelect extends Component {
+class SlackActionSelectBlock extends Component {
   constructor() {
     super();
     this.moreActionsRef = React.createRef();
     this.tabRef = React.createRef();
     this.state = {
       blankResponse: false,
-      fullDescriptionVisible: false
+      fullDescriptionVisible: false,
+      animationRunning: false,
     }
+  }
+
+  componentDidMount() {
+    this.animate();
+  }
+
+  componentDidUpdate() {
+    this.animate()
+  }
+
+  runningAnimation() {
+    this.setState({
+      animationRunning: true
+    })
+  }
+
+  stopAnimation() {
+    this.setState({
+      animationRunning: false
+    })
   }
 
   showFullDescription() {
@@ -46,31 +68,60 @@ export default class SlackActionSelect extends Component {
     })
   }
 
-  componentDidMount() {
-    this.animate();
+  loop() {
+    TweenLite.delayedCall(.25, () => {
+      this.stopAnimation();
+      this.animate();
+    });
+  }
+
+  handleAction() {
+    const {
+      selectedAction,
+    } = this.props;
+
+    switch(selectedAction) {
+      case 'Update Status':
+        this.tabRef.current.showStatusButtons();
+        TweenLite.delayedCall(4, () => {
+          this.tabRef.current.showBlankCanvas();
+          this.showBlankResponse();
+          this.tabRef.current.hideStatusButtons();
+          this.loop();
+        });
+        break;
+      case 'View Description':
+        this.showFullDescription();
+        TweenLite.delayedCall(4, () => {
+          this.tabRef.current.showBlankCanvas();
+          this.showBlankResponse();
+          this.hideFullDescription();
+          this.loop();
+        });
+        break;
+    }
   }
 
   animate() {
-    this.tabRef.current.resetBlankCanvas();
-    this.resetBlankResponse();
-    TweenLite.delayedCall(1, () => {
-      this.moreActionsRef.current.selectMoreActions();
-      TweenLite.delayedCall(.25, () => {
-        this.moreActionsRef.current.showDropdown();
-        TweenLite.delayedCall(.75, () => {
-          this.moreActionsRef.current.resetState();
-          this.showFullDescription();
-          TweenLite.delayedCall(5, () => {
-            this.tabRef.current.showBlankCanvas();
-            this.showBlankResponse();
-            this.hideFullDescription();
-            TweenLite.delayedCall(.25, () => {
-              this.animate();
-            });
+    // inViewport from react-in-viewport
+    const { inViewport } = this.props;
+    const { animationRunning } = this.state;
+
+    if (inViewport && !animationRunning) {
+      this.runningAnimation();
+      this.tabRef.current.resetBlankCanvas();
+      this.resetBlankResponse();
+      TweenLite.delayedCall(1, () => {
+        this.moreActionsRef.current.selectMoreActions();
+        TweenLite.delayedCall(.25, () => {
+          this.moreActionsRef.current.showDropdown();
+          TweenLite.delayedCall(.75, () => {
+            this.moreActionsRef.current.resetState();
+            this.handleAction();
           });
         });
       });
-    });
+    }
   }
 
   render() {
@@ -104,14 +155,14 @@ export default class SlackActionSelect extends Component {
   }
 }
 
-SlackActionSelect.defaultProps = {
+SlackActionSelectBlock.defaultProps = {
   command: '',
   message: '',
   responseHeading: '',
   events: [],
 };
 
-SlackActionSelect.propTypes = {
+SlackActionSelectBlock.propTypes = {
   command: PropTypes.string,
   message: PropTypes.string,
   responseHeading: PropTypes.string,
@@ -126,3 +177,7 @@ SlackActionSelect.propTypes = {
     })
   ),
 };
+
+const SlackActionSelect = handleViewport(SlackActionSelectBlock, { threshold: 0.75 });
+
+export default SlackActionSelect;

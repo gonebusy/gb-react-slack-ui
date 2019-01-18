@@ -85,7 +85,23 @@ const Main = function() {
                       }
                   ]}
               />
-          </section>xs
+          </section>
+          <section className="demo">
+              <SlackActionSelect
+                  responseHeading="You're all set."
+                  selectedAction='Update Status'
+                  events={[
+                      {
+                          buttonText: "Edit Details",
+                          responseTitle: "Interview with Bruce Wayne",
+                          responseDescription: `${moment().add(1, 'days').format('MMMM Do')} from 1PM to 2PM`,
+                          responseFullDescription: "something really long and lengthy",
+                          responseMembers: "With @yourslackname, @brucewayne",
+                          responseShowAddedToGoogleCalender: true,
+                      }
+                  ]}
+              />
+          </section>
       </Fragment>
   );
 };

@@ -13,7 +13,8 @@ export default class SlackTabResponse extends Component {
   constructor() {
     super();
     this.state = {
-      blankCanvas: false
+      blankCanvas: false,
+      showStatusButtons: false,
     }
   }
 
@@ -26,6 +27,18 @@ export default class SlackTabResponse extends Component {
   resetBlankCanvas() {
     this.setState({
       blankCanvas: false
+    })
+  }
+
+  showStatusButtons() {
+    this.setState({
+      showStatusButtons: true
+    })
+  }
+
+  hideStatusButtons() {
+    this.setState({
+      showStatusButtons: false
     })
   }
 
@@ -48,13 +61,58 @@ export default class SlackTabResponse extends Component {
     }
   }
 
+  renderBlankCanvas() {
+    const { blankCanvas } = this.state;
+
+    if (blankCanvas) {
+      return (
+        <span className="slack__response-attachment-button-blank">blank</span>
+      )
+    }
+  }
+
+  renderPrimaryButtons(buttonLabel) {
+    const {
+      moreActionsRef,
+      selectedAction,
+    } = this.props;
+    const { blankCanvas, showStatusButtons } = this.state;
+
+    if (!blankCanvas) {
+      if (showStatusButtons) {
+        return (
+          <Fragment>
+              <span className="slack__response-attachment-button basic"><span className="basic">No</span></span>
+              <span className="slack__response-attachment-button basic"><span className="basic">Maybe</span></span>
+              <span className="slack__response-attachment-button">You Accepted</span>
+          </Fragment>
+        )
+      }
+      else {
+        return (
+          <Fragment>
+              <span className="slack__response-attachment-button">{ buttonLabel }</span>
+              <SlackMoreActions ref={moreActionsRef} selectedAction={selectedAction} />
+          </Fragment>
+        )
+      }
+    }
+  }
+
+  renderActionButtons(buttonLabel) {
+    return (
+      <Fragment>
+        { this.renderBlankCanvas() }
+        { this.renderPrimaryButtons(buttonLabel) }
+      </Fragment>
+    )
+  }
+
   render() {
     const {
       command,
       responseHeading,
       events,
-      moreActionsRef,
-      selectedAction,
       fullDescriptionVisible,
     } = this.props;
     const { blankCanvas } = this.state;
@@ -99,22 +157,14 @@ export default class SlackTabResponse extends Component {
                             {fullDescriptionVisible && (
                                <div className="slack__response-attachment-text-full-description">{ event.responseFullDescription }</div>
                             )}
-                            {event.showAddedToGoogleCalender && (
-                               <div className="slack__response-attachment-footer">
-                                   <GoogleCalendar className="slack__response-attachment-footer-icon" />
-                                   <span className="slack__response-attachment-footer-text">Added to Google Calendar</span>
-                               </div>
+                           {event.showAddedToGoogleCalender && (
+                              <div className="slack__response-attachment-footer">
+                                  <GoogleCalendar className="slack__response-attachment-footer-icon" />
+                                  <span className="slack__response-attachment-footer-text">Added to Google Calendar</span>
+                              </div>
                             )}
                             <div className="slack__response-attachment-text-actionrow">
-                                { blankCanvas && (
-                                  <span className="slack__response-attachment-button-blank">blank</span>
-                                )}
-                                { !blankCanvas && (
-                                  <span className="slack__response-attachment-button">{ event.buttonText }</span>
-                                )}
-                                { !blankCanvas && (
-                                  <SlackMoreActions ref={moreActionsRef} selectedAction={selectedAction} />
-                                )}
+                              { this.renderActionButtons(event.buttonText) }
                             </div>
                         </div>
                     </div>

@@ -10,9 +10,9 @@ export default class SlackApp extends Component {
     switch(command) {
       case '/gonebusy':
         text = '[ &lt;notion of time&gt; | book | feedback | help | ... ]';
-          break;
-        default:
-          text = null;
+        break;
+      default:
+        text = null;
     }
     return text;
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import handleViewport from 'react-in-viewport';
 import PropTypes from 'prop-types';
 import { TweenLite, Linear } from 'gsap';
 import SlackMessage from './SlackMessage';
@@ -10,54 +11,77 @@ import members from '../../data/members.json';
 import 'gsap/TextPlugin';
 import '../../scss/slack.scss';
 
-export default class SlackCommand extends Component {
+class SlackCommandBlock extends Component {
   constructor() {
     super();
     this.state = {
       messageText: null,
-      showResponse: false
+      showResponse: false,
+      animationRunning: false,
     };
   }
 
   componentDidMount() {
-    this.animate();
+    this.animate()
+  }
+
+  componentDidUpdate() {
+    this.animate()
+  }
+
+  runningAnimation() {
+    this.setState({
+      animationRunning: true
+    })
+  }
+
+  stopAnimation() {
+    this.setState({
+      animationRunning: false
+    })
   }
 
   animate() {
-    const { message } = this.props;
+    // inViewport from react-in-viewport
+    const { message, inViewport } = this.props;
+    const { animationRunning } = this.state;
 
-    let span = document.createElement('span');
-    const speed = 10;
-    TweenLite.delayedCall(1, () => {
-      TweenLite.to(span, message.length / speed, {
-        text: message,
-        onUpdate: () => {
-          this.setState({ messageText: span.textContent });
-        },
-        onComplete: () => {
-          TweenLite.delayedCall(1, () => {
-            this.setState({
-              messageText: null
+    if (inViewport && !animationRunning) {
+      this.runningAnimation();
+      let span = document.createElement('span');
+      const speed = 10;
+      TweenLite.delayedCall(1, () => {
+        TweenLite.to(span, message.length / speed, {
+          text: message,
+          onUpdate: () => {
+            this.setState({ messageText: span.textContent });
+          },
+          onComplete: () => {
+            TweenLite.delayedCall(1, () => {
+              this.setState({
+                messageText: null
+              });
             });
-          });
 
-          TweenLite.delayedCall(1.2, () => {
-            this.setState({
-              showResponse: true
+            TweenLite.delayedCall(1.2, () => {
+              this.setState({
+                showResponse: true
+              });
             });
-          });
 
-          TweenLite.delayedCall(8, () => {
-            this.setState({
-              showResponse: false
+            TweenLite.delayedCall(8, () => {
+              this.setState({
+                showResponse: false
+              });
+              this.stopAnimation();
+              this.animate();
             });
-            this.animate();
-          });
-          span = null;
-        },
-        ease: Linear.easeNone
+            span = null;
+          },
+          ease: Linear.easeNone
+        });
       });
-    });
+    }
   }
 
   renderMember(member, i, search) {
@@ -89,43 +113,41 @@ export default class SlackCommand extends Component {
 
     return (
       <div className="slack">
-        <div className="slack__tabs">
-          {userSearch && (
-            <SlackTab>
-              {this.renderMembers(userSearch[0].substring(1))}
-            </SlackTab>
-          )
-          }
-          {appSearch && (
-            <SlackTab>
-              <SlackApp command={command} />
-            </SlackTab>
-          )
-          }
-          {showResponse && (
-             <SlackTab className="slack__tab-response" header={false}>
-               <SlackTabResponse
-                 command={command}
-                 responseHeading={responseHeading}
-                 events={events}
-               />
-            </SlackTab>
-          )}
-        </div>
-        <SlackMessage text={messageText} ref={(ref) => { this.message = ref; }} />
+          <div className="slack__tabs">
+              {userSearch && (
+                 <SlackTab>
+                     {this.renderMembers(userSearch[0].substring(1))}
+                 </SlackTab>
+              )}
+              {appSearch && (
+                  <SlackTab>
+                      <SlackApp command={command} />
+                  </SlackTab>
+              )}
+              {showResponse && (
+                  <SlackTab className="slack__tab-response" header={false}>
+                      <SlackTabResponse
+                          command={command}
+                          responseHeading={responseHeading}
+                          events={events}
+                      />
+                  </SlackTab>
+              )}
+          </div>
+          <SlackMessage text={messageText} ref={(ref) => { this.message = ref; }} />
       </div>
     );
   }
 }
 
-SlackCommand.defaultProps = {
+SlackCommandBlock.defaultProps = {
   command: '',
   message: '',
   responseHeading: '',
   events: [],
 };
 
-SlackCommand.propTypes = {
+SlackCommandBlock.propTypes = {
   command: PropTypes.string,
   message: PropTypes.string,
   responseHeading: PropTypes.string,
@@ -139,3 +161,7 @@ SlackCommand.propTypes = {
     })
   ),
 };
+
+const SlackCommand = handleViewport(SlackCommandBlock, { threshold: 0.75 });
+
+export default SlackCommand;
