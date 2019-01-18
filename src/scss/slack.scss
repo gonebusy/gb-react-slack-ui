@@ -31,10 +31,43 @@
     }
   }
 
+  &__more_actions {
+    &-container {
+      display: inline-block;
+    }
+
+    &-dropdown {
+      background-color: $color-white;
+      border-radius: 4px;
+      box-shadow: inset 0 0 0 1px rgba($color-gray, .3);
+      font-size: 12px;
+      padding: 5px 4px;
+      position: absolute;
+      bottom: 52px;
+      width: 30%;
+      z-index: 99;
+
+      &-action {
+        border-radius: 4px;
+        padding: 3px 7px;
+
+        &.active, &:hover {
+          background: $color-light-lavender;
+          box-shadow: inset 0 0 0 1px rgba($color-active-blue, .3);
+        }
+      }
+    }
+  }
+
+  .blank {
+    color: $color-almost-white;
+  }
+
   &__tabs {
     position: relative;
     margin-bottom: 4px;
     min-height: 250px;
+    z-index: 0;
   }
 
   &__label {
@@ -63,6 +96,10 @@
 
     &--self {
       background: $color-cream;
+    }
+
+    &.blank {
+      background: $color-almost-white;
     }
   }
 
@@ -95,6 +132,10 @@
       margin: auto 3px;
       padding: 1px 3px;
       text-transform: uppercase;
+
+      &.blank {
+        background-color: $color-almost-white;
+      }
     }
 
     &-timestamp {
@@ -201,12 +242,19 @@
 
   &__response {
     &-attachments {
-      border-left: 4px solid $color-light-green;
       margin-left: 4px;
     }
 
     &-attachment {
-      padding: 0 12px;
+      padding: 0 0 2px;
+
+      &-text-actionrow {
+        padding-top: 8px;
+      }
+
+      &-text-full-description {
+        font-style: italic;
+      }
 
       &-title {
         font-weight: 600;
@@ -231,7 +279,13 @@
       }
 
       &-body {
+        border-left: 4px solid $color-light-green;
         margin: 8px 0 0;
+        padding: 0 12px;
+
+        &.no-border {
+          border: 0;
+        }
       }
 
       &-footer {
@@ -264,7 +318,7 @@
         height: 28px;
         justify-content: center;
         line-height: 27px;
-        margin: 8px 8px 2px 0;
+        margin: 1px 8px 2px 0;
         max-width: 220px;
         outline: none;
         padding: 0 10px;
@@ -275,7 +329,7 @@
         white-space: nowrap;
 
         &.basic {
-            box-shadow: inset 0 0 0 1px rgba($color-gray, .3);
+          box-shadow: inset 0 0 0 1px rgba($color-gray, .5);
         }
 
         .basic {
@@ -284,14 +338,42 @@
         }
       }
 
+      &-button-blank {
+        background: $color-almost-white;
+        box-shadow: inset 0 0 0 1px rgba($color-almost-white, .3);
+        color: $color-almost-white;
+        display: inline-flex;
+        font-size: 12px;
+        font-weight: 400;
+        height: 28px;
+        line-height: 27px;
+        margin: 1px 8px 2px 0;
+        max-width: 220px;
+        outline: none;
+        padding: 0 10px;
+        position: relative;
+        user-select: none;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+
       &-combo-box {
         border: 1px solid rgba(44, 45, 48, .22);
         box-shadow: none;
         font-weight: 400;
         color: $color-medium-gray;
         padding-right: 40px;
-        background: url("data:image/svg+xml;utf8,<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 8' style='enable-background:new 0 0 13 8;'><path vector-effect='non-scaling-stroke' stroke='currentColor' stroke-width='1.5' fill='none' d='M0,1l6.2,5.9C6.3,7,6.7,7,6.8,6.9L13,1' stroke-linecap='round' /></svg>") no-repeat calc(100% - 12px) 50%;
+        background: $color-white url("data:image/svg+xml;utf8,<svg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 8' style='enable-background:new 0 0 13 8;'><path vector-effect='non-scaling-stroke' stroke='currentColor' stroke-width='1.5' fill='none' d='M0,1l6.2,5.9C6.3,7,6.7,7,6.8,6.9L13,1' stroke-linecap='round' /></svg>") no-repeat calc(100% - 12px) 50%;
         background-size: 8px 6px;
+
+        &:hover {
+          border: 1px solid $color-gray;
+        }
+
+        &.active {
+          border: 1px solid $color-gray;
+          box-shadow: 0 0 0 4px rgba($color-deep-blue, .4);
+        }
       }
     }
 
@@ -338,7 +420,7 @@
       p {
         color: inherit;
         font-family: inherit;
-        font-size: 1rem;
+        font-size: 12px;
         line-height: 1.6;
         margin: 0;
       }

@@ -2,48 +2,52 @@
   {
     "online":true,
     "active":true,
-    "name":"brucewayne",
+    "name":"@brucewayne",
     "secondaryName":"Bruce Wayne"
   },
   {
-    "name":"brucelee",
+    "name":"@brucelee",
     "secondaryName":"Bruce Lee"
   },
   {
-    "name":"brucewillis",
+    "name":"@brucewillis",
     "secondaryName":"Bruce Willis"
   },
   {
     "online":true,
     "label":"APP",
-    "name":"gonebusy",
+    "name":"@gonebusy",
     "secondaryName":"Gonebusy"
   },
   {
-    "name":"joker",
+    "name":"@joker",
     "secondaryName":"Jack Napier"
   },
   {
     "online":true,
-    "name":"harleyquinn",
+    "name":"@harleyquinn",
     "secondaryName":"Harley Quinn"
   },
   {
-    "name":"posionivy",
+    "name":"@posionivy",
     "secondaryName":"Maggie Geha"
   },
   {
-    "name":"theboywonder",
+    "name":"@theboywonder",
     "secondaryName":"TheBoyWonder"
   },
   {
     "online":true,
-    "name":"wonderwheel",
+    "name":"@wonderwheel",
     "secondaryName":"TheWonderWheel"
   },
   {
     "online":true,
-    "name":"wonderwoman",
+    "name":"@wonderwoman",
     "secondaryName":"Wonder Woman"
+  },
+  {
+    "name":"client@example.com",
+    "secondaryName":"client@example.com"
   }
 ]

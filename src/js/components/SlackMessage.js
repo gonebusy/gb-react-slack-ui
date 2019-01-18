@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import SlackText from './slack-text';
+import SlackText from './SlackText';
 import PlusThickIcon from '../../assets/svg/plus-thick-icon.svg';
 import MentionsIcon from '../../assets/svg/mentions-icon.svg';
 import HappySmileIcon from '../../assets/svg/happy-smile-icon.svg';

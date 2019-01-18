@@ -1,7 +1,5 @@
 .demo {
   background-color: $color-sky-blue;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   padding: 20px;
 
@@ -9,8 +7,12 @@
     background-color: adjust-hue($color-sky-blue, 50%);
   }
 
+  &.large {
+    padding-top: 135px;
+  }
+
   @include medium {
-    padding: 40px;
+    padding: 20px;
   }
 
   &__heading {
