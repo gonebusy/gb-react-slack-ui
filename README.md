@@ -1,17 +1,19 @@
-# gonebusy www
+# Gonebusy React Slack UI Components
 
 ## Setup
 
-install nodejs then
+install yarn then
 
-`npm i `
+`yarn`
 
 to run development and watchers
 
-`npm run dev  `
+`yarn dev  `
 
 open browser to localhost:8080
 
-to build static files in `public`
+to build static files in `build`
 
-`npm run build`
+`yarn build-debug`
+
+(`debug` produces unminified files that play nice with Rails/Webpacker)
