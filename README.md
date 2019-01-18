@@ -1,4 +1,4 @@
-# Gonebusy React Slack UI Components
+# Gonebusy Slack UI React Components
 
 ## Setup
 
