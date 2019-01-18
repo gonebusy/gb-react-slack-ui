@@ -1,7 +1,5 @@
 .demo {
   background-color: $color-sky-blue;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   padding: 20px;
 
@@ -12,7 +10,7 @@
   &.large {
     padding-top: 135px;
   }
-    
+
   @include medium {
     padding: 20px;
   }
