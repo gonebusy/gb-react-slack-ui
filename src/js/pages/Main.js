@@ -12,6 +12,7 @@ const Main = function() {
       <Fragment>
           <section className="demo">
               <SlackCommand
+                  command="/gonebusy"
                   message="/gonebusy book Interview with @brucewayne @wonderwoman @joker @brucelee about something really long and lengthy tomorrow at 1pm"
                   responseHeading="You're all set."
                   events={[
