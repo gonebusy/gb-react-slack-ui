@@ -9,7 +9,7 @@ export default class SlackApp extends Component {
     let text;
     switch(command) {
       case '/gonebusy':
-        text = '[ &lt;notion of time&gt; | book | feedback | help | ... ]';
+        text = '[ <notion of time> | book | feedback | help | ... ]';
         break;
       default:
         text = null;
