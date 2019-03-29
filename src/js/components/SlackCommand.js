@@ -76,7 +76,6 @@ class SlackCommandBlock extends Component {
               this.stopAnimation();
               this.animate();
             });
-            span = null;
           },
           ease: Linear.easeNone
         });
