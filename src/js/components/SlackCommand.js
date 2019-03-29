@@ -48,13 +48,13 @@ class SlackCommandBlock extends Component {
 
     if (inViewport && !animationRunning) {
       this.runningAnimation();
-      let span = document.createElement('span');
+      let show = { count: 0 }
       const speed = 10;
       TweenLite.delayedCall(1, () => {
-        TweenLite.to(span, message.length / speed, {
-          text: message,
+        TweenLite.to(show, message.length / speed, {
+          count: message.length,
           onUpdate: () => {
-            this.setState({ messageText: span.textContent });
+            this.setState({ messageText: message.substr(0, show.count) });
           },
           onComplete: () => {
             TweenLite.delayedCall(1, () => {
