@@ -1,6 +1,7 @@
 import './App'
 
 export { default as SlackEventCommand } from './js/components/SlackEventCommand'
+export { default as SlackStatusCommand } from './js/components/SlackStatusCommand'
 export { default as SlackActionSelect } from './js/components/SlackActionSelect'
 export { default as SlackApp } from './js/components/SlackApp'
 export { default as SlackMessage } from './js/components/SlackMessage'
