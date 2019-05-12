@@ -76,7 +76,7 @@ export default class SlackMoreActions extends Component {
 }
 
 SlackMoreActions.defaultProps = {
-  actions: ['Share Event', 'Update Status', 'View All Attendees', 'View Description', 'Delete Event'],
+  actions: ['Share Event', 'Update Event Status', 'View All Attendees', 'View Description', 'Delete Event'],
   selectedAction: '',
 };
 
