@@ -137,29 +137,28 @@ const Main = function() {
       <section className="demo large">
         <SlackStatusCommand
           command="/gonebusy"
-          message="/gonebusy this week"
-          responseHeading="You're all set."
-          events={[
+          message="/gonebusy status Out to lunch 🍔 for 1 hour"
+          responseHeading={`I\'ve set your status.  I\'ve also let Slack know you would like to clear your status at: ${moment()
+            .add(1, 'h')
+            .format('MMMM Do h:mm A')}`}
+          response_lines={[
             {
-              buttonText: 'Edit Details',
-              responseTitle: 'Monday',
-              responseDescription: `${moment()
-                .startOf('isoWeek')
-                .weekday(8)
-                .format('MMMM Do')} from 1PM to 2PM`,
-              responseMembers: 'With @yourslackname, @harleyquinn',
-              responseShowAddedToGoogleCalender: true,
-            },
-            {
-              buttonText: 'Edit Details',
-              responseTitle: 'Friday',
-              responseDescription: `${moment()
-                .startOf('isoWeek')
-                .weekday(8)
-                .format('MMMM Do')} from 1PM to 2PM`,
-              responseMembers:
-                'With @yourslackname, @joker, client@example.com',
-              responseShowAddedToGoogleCalender: true,
+              buttonArray: [
+                {
+                  text: 'Choose channel',
+                },
+                {
+                  text: 'Not now',
+                  type: 'basic',
+                },
+                {
+                  text: "Don't ask again",
+                  type: 'danger',
+                },
+              ],
+              responseDescription:
+                'Would you like to post your updated status to a channel?',
+              noAuthor: true,
             },
           ]}
         />

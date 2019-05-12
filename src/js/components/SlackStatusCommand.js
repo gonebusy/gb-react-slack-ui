@@ -126,7 +126,7 @@ class SlackCommandBlock extends Component {
               <SlackTabResponse
                 command={command}
                 responseHeading={responseHeading}
-                response_lines={response_lines}
+                events={response_lines}
               />
             </SlackTab>
           )}
@@ -155,11 +155,13 @@ SlackCommandBlock.propTypes = {
   responseHeading: PropTypes.string,
   response_lines: PropTypes.arrayOf(
     PropTypes.shape({
-      buttonText: PropTypes.string.isRequired,
+      buttonText: PropTypes.string,
+      buttonArray: PropTypes.array,
       responseTitle: PropTypes.string,
       responseDescription: PropTypes.string,
       responseMembers: PropTypes.string,
       responseShowAddedToGoogleCalender: PropTypes.bool,
+      noAuthor: PropTypes.bool,
     })
   ),
 }
