@@ -81,7 +81,7 @@ class SlackActionSelectBlock extends Component {
     } = this.props;
 
     switch(selectedAction) {
-      case 'Update Status':
+      case 'Update Event Status':
         this.tabRef.current.showStatusButtons();
         TweenLite.delayedCall(4, () => {
           this.tabRef.current.showBlankCanvas();

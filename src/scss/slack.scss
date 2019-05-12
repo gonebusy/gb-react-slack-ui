@@ -63,6 +63,10 @@
     color: $color-almost-white;
   }
 
+    .hidden {
+        display: none;
+    }
+
   &__tabs {
     position: relative;
     margin-bottom: 4px;
@@ -336,6 +340,15 @@
           color: #000;
           margin-left: 3px;
         }
+
+        &.danger {
+          box-shadow: inset 0 0 0 1px rgba($color-red, .5);
+        }
+
+        .danger {
+          color: $color-red;
+          margin-left: 3px;
+        }
       }
 
       &-button-blank {
@@ -378,8 +391,9 @@
     }
 
     &-body {
-      margin: 8px 0 -4px;
       font-size: 15px;
+      margin: 8px 0 -4px;
+      white-space: pre-wrap;
     }
   }
 
